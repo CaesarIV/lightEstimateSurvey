@@ -12,44 +12,162 @@
         <br>
         
           <div class="grid-container">
-            <h1 class="mat-h1">Solo Tests</h1>
-            <mat-grid-list cols="4" rowHeight="100px">
-              <mat-grid-tile colspan="2" rowspan="2">
+            <h1 class="mat-h1">Solo Tests</h1>            
+
+              <mat-expansion-panel style="width: fit-content;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Image 1                                            
+                  </mat-panel-title>                    
+                </mat-expansion-panel-header>   
+                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-action-row>                        
+                  <span>
+                    Too Dark
+                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
+                    Too Bright
+                  </span>
+                  <span class="spacer"></span>
+                  <button mat-button>Submit</button>
+                </mat-action-row>                                        
+                <br>                                      
+              </mat-expansion-panel>     
+              <br>
+
+              <mat-expansion-panel style="width: fit-content;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Image 2                                            
+                  </mat-panel-title>                    
+                </mat-expansion-panel-header>   
+                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-action-row>                        
+                  <span>
+                    Too Dark
+                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
+                    Too Bright
+                  </span>
+                  <span class="spacer"></span>
+                  <button mat-button>Submit</button>
+                </mat-action-row>                                        
+                <br>                                      
+              </mat-expansion-panel>     
+              <br>
+              
+              <mat-expansion-panel style="width: fit-content;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Image 3                                            
+                  </mat-panel-title>                    
+                </mat-expansion-panel-header>   
+                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-action-row>                        
+                  <span>
+                    Too Dark
+                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
+                    Too Bright
+                  </span>
+                  <span class="spacer"></span>
+                  <button mat-button>Submit</button>
+                </mat-action-row>                                        
+                <br>                                      
+              </mat-expansion-panel>     
+              <br>
+              
+              <mat-expansion-panel style="width: fit-content;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Video 1                                            
+                  </mat-panel-title>                    
+                </mat-expansion-panel-header>   
+                <vg-player>
+                    <vg-overlay-play></vg-overlay-play>
+                    <vg-buffering></vg-buffering>
                 
-                  <mat-expansion-panel style="width: 100%">
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        Image 1                    
-                        <!--button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                          <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu" xPosition="before">
-                          <button mat-menu-item>Expand</button>
-                          <button mat-menu-item>Remove</button>
-                        </mat-menu-->
-                      </mat-panel-title>                    
-                    </mat-expansion-panel-header>   
-                    <mat-action-row>
-                      <span style="width: 100%">
-                        Too Dark
-                        <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
-                        Too Bright
-                      </span>
-                    </mat-action-row>
-                    <!--img height="50%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"-->               
-                    
-                    <br>                  
-                    <!--mat-panel-description class="dashboard-card-content">
-                      <div>Card Content Here</div>
-                    </mat-panel-description-->
-                  </mat-expansion-panel>                
-              </mat-grid-tile>
-            </mat-grid-list>          
+                    <vg-scrub-bar>
+                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                    </vg-scrub-bar>
+                
+                    <vg-controls>
+                        <vg-play-pause></vg-play-pause>
+                        <vg-playback-button></vg-playback-button>
+                
+                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                
+                        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                
+                        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                
+                        <vg-track-selector></vg-track-selector>
+                        <vg-mute></vg-mute>
+                        <vg-volume></vg-volume>
+                
+                        <vg-fullscreen></vg-fullscreen>
+                    </vg-controls>
+                    <video [vgMedia]="media" #media id="singleVideo" preload="auto">
+                        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+                    </video>
+                </vg-player>
+                <mat-action-row>                        
+                  <span>
+                    Too Dark
+                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
+                    Too Bright
+                  </span>
+                  <span class="spacer"></span>
+                  <button mat-button>Submit</button>
+                </mat-action-row>                                        
+                <br>                                      
+              </mat-expansion-panel>     
+              <br>
+              
+              <mat-expansion-panel style="width: fit-content;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Image 4                                            
+                  </mat-panel-title>                    
+                </mat-expansion-panel-header>   
+                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-action-row>                        
+                  <span>
+                    Too Dark
+                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
+                    Too Bright
+                  </span>
+                  <span class="spacer"></span>
+                  <button mat-button>Submit</button>
+                </mat-action-row>                                        
+                <br>                                      
+              </mat-expansion-panel>     
+              <br>
+              
+              <mat-expansion-panel style="width: fit-content;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Image 5                                            
+                  </mat-panel-title>                    
+                </mat-expansion-panel-header>   
+                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-action-row>                        
+                  <span>
+                    Too Dark
+                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
+                    Too Bright
+                  </span>
+                  <span class="spacer"></span>
+                  <button mat-button>Submit</button>
+                </mat-action-row>                                        
+                <br>                                      
+              </mat-expansion-panel>     
+             
+                                               
           </div>
 
-        <mat-form-field>
+        <!--mat-form-field>
           <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>        
+        </mat-form-field-->        
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>
