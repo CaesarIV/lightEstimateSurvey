@@ -14,6 +14,9 @@ export class ThirdPageComponent implements OnInit {
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  answeredSolo = [false,false,false,false,false,false,false,false]
+  stepSolo = 0;
+
 
   formatLabel(value: number | null) {
     if (!value) {
@@ -25,6 +28,24 @@ export class ThirdPageComponent implements OnInit {
     }
 
     return value+'%';
+  }
+
+  saveAnswerSolo(question:number){
+    console.log(question);
+    this.answeredSolo[question] = true;
+    this.nextStepSolo();
+  }
+
+  setStepSolo(index: number) {
+    this.stepSolo = index;
+  }
+
+  nextStepSolo() {
+    this.stepSolo++;
+  }
+
+  prevStepSolo() {
+    this.stepSolo--;
   }
 
   ngOnInit() {

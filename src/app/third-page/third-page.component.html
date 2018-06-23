@@ -13,12 +13,14 @@
         
           <div class="grid-container">
             <h1 class="mat-h1">Solo Tests</h1>            
+            <mat-accordion>
 
-              <mat-expansion-panel style="width: fit-content;">
+              <mat-expansion-panel [expanded]="stepSolo === 0" (opened)="setStepSolo(0)" style="width: fit-content;">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     Image 1                                            
-                  </mat-panel-title>                    
+                  </mat-panel-title>
+                  <mat-icon color="primary" *ngIf="answeredSolo[0]" style="margin-right: 2%;">check</mat-icon>                    
                 </mat-expansion-panel-header>   
                 <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
                 <mat-action-row>                        
@@ -28,17 +30,18 @@
                     Too Bright
                   </span>
                   <span class="spacer"></span>
-                  <button mat-button>Submit</button>
+                  <button (click)="saveAnswerSolo(0);" mat-button>Submit & Next</button>
                 </mat-action-row>                                        
                 <br>                                      
               </mat-expansion-panel>     
               <br>
-
-              <mat-expansion-panel style="width: fit-content;">
+                            
+              <mat-expansion-panel [expanded]="stepSolo === 1" (opened)="setStepSolo(1)" style="width: fit-content;">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    Image 2                                            
-                  </mat-panel-title>                    
+                    Image 2                                           
+                  </mat-panel-title>
+                  <mat-icon color="primary" *ngIf="answeredSolo[1]" style="margin-right: 2%;">check</mat-icon>                    
                 </mat-expansion-panel-header>   
                 <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
                 <mat-action-row>                        
@@ -48,17 +51,18 @@
                     Too Bright
                   </span>
                   <span class="spacer"></span>
-                  <button mat-button>Submit</button>
+                  <button (click)="saveAnswerSolo(1);" mat-button>Submit & Next</button>
                 </mat-action-row>                                        
                 <br>                                      
               </mat-expansion-panel>     
               <br>
               
-              <mat-expansion-panel style="width: fit-content;">
+              <mat-expansion-panel [expanded]="stepSolo === 2" (opened)="setStepSolo(2)" style="width: fit-content;">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     Image 3                                            
-                  </mat-panel-title>                    
+                  </mat-panel-title>
+                  <mat-icon color="primary" *ngIf="answeredSolo[2]" style="margin-right: 2%;">check</mat-icon>                    
                 </mat-expansion-panel-header>   
                 <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
                 <mat-action-row>                        
@@ -68,11 +72,14 @@
                     Too Bright
                   </span>
                   <span class="spacer"></span>
-                  <button mat-button>Submit</button>
+                  <button (click)="saveAnswerSolo(2);" mat-button>Submit & Next</button>
                 </mat-action-row>                                        
                 <br>                                      
               </mat-expansion-panel>     
               <br>
+
+
+              
               
               <mat-expansion-panel style="width: fit-content;">
                 <mat-expansion-panel-header>
@@ -117,7 +124,7 @@
                     Too Bright
                   </span>
                   <span class="spacer"></span>
-                  <button mat-button>Submit</button>
+                  <button mat-button>Submit & Next</button>
                 </mat-action-row>                                        
                 <br>                                      
               </mat-expansion-panel>     
@@ -137,7 +144,7 @@
                     Too Bright
                   </span>
                   <span class="spacer"></span>
-                  <button mat-button>Submit</button>
+                  <button mat-button>Submit & Next</button>
                 </mat-action-row>                                        
                 <br>                                      
               </mat-expansion-panel>     
@@ -157,12 +164,12 @@
                     Too Bright
                   </span>
                   <span class="spacer"></span>
-                  <button mat-button>Submit</button>
+                  <button mat-button>Submit & Next</button>
                 </mat-action-row>                                        
                 <br>                                      
               </mat-expansion-panel>     
              
-                                               
+            </mat-accordion>                           
           </div>
 
         <!--mat-form-field>
