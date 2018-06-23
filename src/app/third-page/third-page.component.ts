@@ -11,14 +11,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ThirdPageComponent implements OnInit {
 
   value = 50;
-  questions = [
-    {id: 0, type:'Image'},
-    {id: 1, type:'Image'},
-    {id: 2, type:'Video'},
-    {id: 3, type:'Image'},
-    {id: 4, type:'Image'},
-    {id: 5, type:'Video'},
-    {id: 6, type:'Image'}
+  soloQuestions = [
+    {id: 0, type:'Image', url:'', answer:''},
+    {id: 1, type:'Image', url:'', answer:''},
+    {id: 2, type:'Video', url:'', answer:''},
+    {id: 3, type:'Image', url:'', answer:''},
+    {id: 4, type:'Image', url:'', answer:''},
+    {id: 5, type:'Video', url:'', answer:''},
+    {id: 6, type:'Image', url:'', answer:''}
   ];
 
   constructor(private _formBuilder: FormBuilder) { 
@@ -26,9 +26,7 @@ export class ThirdPageComponent implements OnInit {
   }
   isLinear = true;
   firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  answeredSolo = [false,false,false,false,false,false,false,false]
-  answersSolo: Array<number> = [50,50,50,50,50,50];
+  secondFormGroup: FormGroup;  
   soloCompleted = false;
   stepSolo = 0;
 
@@ -46,22 +44,33 @@ export class ThirdPageComponent implements OnInit {
   }
 
   changeMatslider(question:number,slider) {
-    this.answersSolo[question] = slider.value ;
+    this.soloQuestions[question].answer = slider.value;
+    for (let index = 0; index < this.soloQuestions.length; index++) {      
+      if(this.soloQuestions[index].answer == ''){
+        return;
+      }         
+    }
+    this.soloCompleted = true;    
   }
 
-  saveAnswerSolo(question:number){    
-    console.log("Question #"+question+": "+this.answersSolo[question]);
-    this.answeredSolo[question] = true;
+  saveAnswerSolo(question:number){            
     this.nextStepSolo();
+
+    for (let index = 0; index < this.soloQuestions.length; index++) {      
+      if(this.soloQuestions[index].answer == ''){
+        return;
+      }         
+    }
+    this.soloCompleted = true;
   }
 
   submitSolo(){
-    if(this.answersSolo.length < 6){
-      this.soloCompleted = false;
-    }else{
-      console.log("Send: "+this.answersSolo);
-      this.soloCompleted = true;
+    
+    for (let index = 0; index < this.soloQuestions.length; index++) {      
+      console.log("Answer of "+index+ ": "+this.soloQuestions[index].answer);
     }
+      
+    
   }
 
   setStepSolo(index: number) {
