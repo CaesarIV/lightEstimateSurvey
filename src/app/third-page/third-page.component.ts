@@ -8,21 +8,25 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ThirdPageComponent implements OnInit {
 
-  cards = [
-    { title: 'Video 1', cols: 3, rows: 2 },
-    { title: 'Image 1', cols: 1, rows: 1 },
-    { title: 'Image 2', cols: 1, rows: 1 },
-    { title: 'Image 3', cols: 1, rows: 1 },
-    { title: 'Video 2', cols: 3, rows: 2 },
-    { title: 'Image 4', cols: 1, rows: 1 },
-  ];
-
   value = 50;
 
   constructor(private _formBuilder: FormBuilder) { }
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
+    }
+
+    if (value >= 45 && value <= 55) {
+      return '✓';
+    }
+
+    return value+'%';
+  }
+
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]

@@ -10,43 +10,41 @@
         Please watch these videos (in no order) and fill out the ratings.
         <br>
         <br>
-        <vg-player>
-            <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
-                <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
-            </video>
-        </vg-player>
-
-        <div class="grid-container">
+        
+          <div class="grid-container">
             <h1 class="mat-h1">Solo Tests</h1>
-            <mat-accordion>
-            <mat-grid-list cols="4">
-              <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
-                <mat-expansion-panel class="dashboard-card">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      {{card.title}}
-                      <!--button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                        <mat-icon>more_vert</mat-icon>
-                      </button>
-                      <mat-menu #menu="matMenu" xPosition="before">
-                        <button mat-menu-item>Expand</button>
-                        <button mat-menu-item>Remove</button>
-                      </mat-menu-->
-                    </mat-panel-title>                    
-                  </mat-expansion-panel-header>                  
-                  <span style="width: fit-parent">
-                    Too Dark
-                    <mat-slider thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
-                    Too Bright
-                  </span>
-                  <br>                  
-                  <!--mat-panel-description class="dashboard-card-content">
-                    <div>Card Content Here</div>
-                  </mat-panel-description-->
-                </mat-expansion-panel>
+            <mat-grid-list cols="4" rowHeight="100px">
+              <mat-grid-tile colspan="2" rowspan="2">
+                
+                  <mat-expansion-panel style="width: 100%">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Image 1                    
+                        <!--button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                          <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                          <button mat-menu-item>Expand</button>
+                          <button mat-menu-item>Remove</button>
+                        </mat-menu-->
+                      </mat-panel-title>                    
+                    </mat-expansion-panel-header>   
+                    <mat-action-row>
+                      <span style="width: 100%">
+                        Too Dark
+                        <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
+                        Too Bright
+                      </span>
+                    </mat-action-row>
+                    <!--img height="50%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"-->               
+                    
+                    <br>                  
+                    <!--mat-panel-description class="dashboard-card-content">
+                      <div>Card Content Here</div>
+                    </mat-panel-description-->
+                  </mat-expansion-panel>                
               </mat-grid-tile>
-            </mat-grid-list>
-          </mat-accordion>
+            </mat-grid-list>          
           </div>
 
         <mat-form-field>
