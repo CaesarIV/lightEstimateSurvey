@@ -1,7 +1,6 @@
 <mat-card>
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+    <mat-step>      
         <ng-template matStepLabel>Solo Tests</ng-template>
         <br>
         First I'd like you to evaluate <strong>how well do these materials fit</strong> given the ambient light of their surroundings. <sub>(Do they look too bright? Or Too dark? Or do they fit well.)</sub>
@@ -67,18 +66,12 @@
               <br>              
              
             </mat-accordion>                           
-          </div>
-
-        <!--mat-form-field>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field-->        
+          </div>      
         <div>
           <button (click)="submitSolo();" [disabled]="!soloCompleted" mat-button color="primary" matStepperNext>Submit Solo Tests</button>
-        </div>
-      </form>
+        </div>      
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+    <mat-step>      
         <ng-template matStepLabel>Comparative Tests</ng-template>
         <br>
         Now we're going to have you <strong>compare between the different platforms.</strong>
@@ -93,8 +86,7 @@
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+        </div>      
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Material Investigation</ng-template>
