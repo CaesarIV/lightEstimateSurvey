@@ -9,8 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 export class ThirdPageComponent implements OnInit {
-
-  value = 50;
+  
   soloQuestions = [
     {id: 0, type:'Image', url:'', answer:''},
     {id: 1, type:'Image', url:'', answer:''},
@@ -24,13 +23,10 @@ export class ThirdPageComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) { 
     
   }
-  isLinear = true;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;  
+  isLinear = true;  
   soloCompleted = false;
   stepSolo = 0;
-
-
+  
   formatLabel(value: number | null) {
     if (!value) {
       return 0;

@@ -1,3 +1,5 @@
+<h1 class="text-flicker-in-glow">The Survey</h1>     
+
 <mat-card>
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step>      
@@ -21,7 +23,7 @@
                   </mat-panel-title>
                   <mat-icon color="primary" *ngIf="!question.answer==''" style="margin-right: 2%;">check</mat-icon>                    
                 </mat-expansion-panel-header>   
-                <img *ngIf="question.type == 'Image'" height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <img *ngIf="question.type == 'Image'" class="center" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
                 <vg-player *ngIf="question.type == 'Video'">
                     <vg-overlay-play></vg-overlay-play>
                     <vg-buffering></vg-buffering>
@@ -54,9 +56,9 @@
                 </vg-player>
                 <mat-action-row>                        
                   <span>
-                    Too Dark
+                    Too Dark |
                     <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" (input)='changeMatslider(question.id,$event)' [value]="question.answer"></mat-slider>
-                    Too Bright
+                    | Too Bright
                   </span>
                   <span class="spacer"></span>
                   <button (click)="saveAnswerSolo(question.id);" [disabled]="question.answer==''" mat-button>Next</button>
@@ -71,6 +73,7 @@
           <button (click)="submitSolo();" [disabled]="!soloCompleted" mat-button color="primary" matStepperNext>Submit Solo Tests</button>
         </div>      
     </mat-step>
+
     <mat-step>      
         <ng-template matStepLabel>Comparative Tests</ng-template>
         <br>
@@ -79,15 +82,13 @@
         <br>
         Please rate which one looked better, and by how much.
         <br>
-        <br>
-        <mat-form-field>
-          <input matInput placeholder="Address" formControlName="secondCtrl" required>
-        </mat-form-field>
+        <br>        
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button color="warn" matStepperPrevious>Back</button>
+          <button mat-button color="primary" matStepperNext>Submit Comparative Tests</button>
         </div>      
     </mat-step>
+
     <mat-step>
       <ng-template matStepLabel>Material Investigation</ng-template>
       <br>
@@ -98,8 +99,8 @@
       <br>
       <br>
       <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button color="warn" matStepperPrevious>Back</button>
+          <button mat-button color="primary" matStepperNext>Submit Material Investigation</button>
       </div>
     </mat-step>
     <mat-step>
@@ -112,8 +113,8 @@
         <br>
         <br>
         <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button color="warn" matStepperPrevious>Back</button>
+            <button mat-button color="primary" matStepperNext>Submit Light Level Investigation</button>
         </div>
       </mat-step>
       <mat-step>
@@ -131,7 +132,7 @@
           <br>
           <br>
           <div>
-            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button color="warn" matStepperPrevious>Back</button>
             <button mat-raised-button color="accent" (click)="stepper.reset()">Submit</button>
           </div>
         </mat-step>
