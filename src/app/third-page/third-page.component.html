@@ -1,0 +1,127 @@
+<mat-card>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Solo Tests</ng-template>
+        <br>
+        First I'd like you to evaluate <strong>how well do these materials fit</strong> given the ambient light of their surroundings. <sub>(Do they look too bright? Or Too dark? Or do they fit well.)</sub>
+        <br>
+        <br>
+        Please watch these videos (in no order) and fill out the ratings.
+        <br>
+        <br>
+        <vg-player>
+            <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+            </video>
+        </vg-player>
+
+        <div class="grid-container">
+            <h1 class="mat-h1">Solo Tests</h1>
+            <mat-accordion>
+            <mat-grid-list cols="4">
+              <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
+                <mat-expansion-panel class="dashboard-card">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{card.title}}
+                      <!--button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item>Expand</button>
+                        <button mat-menu-item>Remove</button>
+                      </mat-menu-->
+                    </mat-panel-title>                    
+                  </mat-expansion-panel-header>                  
+                  <span style="width: fit-parent">
+                    Too Dark
+                    <mat-slider thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
+                    Too Bright
+                  </span>
+                  <br>                  
+                  <!--mat-panel-description class="dashboard-card-content">
+                    <div>Card Content Here</div>
+                  </mat-panel-description-->
+                </mat-expansion-panel>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-accordion>
+          </div>
+
+        <mat-form-field>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>        
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Comparative Tests</ng-template>
+        <br>
+        Now we're going to have you <strong>compare between the different platforms.</strong>
+        <br>
+        <br>
+        Please rate which one looked better, and by how much.
+        <br>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Material Investigation</ng-template>
+      <br>
+      Next we want to focus on the materials. 
+      <br>
+      <br>
+      Please watch these videos and rank which materials looked better for each video.
+      <br>
+      <br>
+      <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Light Level Investigation</ng-template>
+        <br>
+        Finally, we want to <em>measure the extent of performance of each platform given varying degrees of <strong> light temparature and intensity.</strong></em>
+        <br>
+        <br>
+        If that didn't make sense to you don't worry. <sub>(It didn't make sense to me either)</sub> Just watch the videos and rate which one looks better, and by how much.
+        <br>
+        <br>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          Thank you for doing this! You've undoubtedly helped advance the cause of science by hundreds, or even thousands, of <strong>minutes!</strong>
+          <br>
+          <br>
+          If you're satisfied with your answers, then go ahead and press submit.
+          <br>
+          <br>
+          In the case that you're not satisfied with your answers, then feel free to also press submit.
+          <br>
+          <br>
+          If you feel that your answers won't progress the cause of science by enough minutes, you're always free to go back and edit them.
+          <br>
+          <br>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="accent" (click)="stepper.reset()">Submit</button>
+          </div>
+        </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>
