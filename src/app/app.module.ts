@@ -43,6 +43,10 @@ import {VgControlsModule} from 'videogular2/controls';
 import {VgOverlayPlayModule} from 'videogular2/overlay-play';
 import {VgBufferingModule} from 'videogular2/buffering';
 import 'hammerjs';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from './../environments/environment';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstPageComponent },
@@ -61,6 +65,9 @@ const appRoutes: Routes = [
     ThirdPageComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,

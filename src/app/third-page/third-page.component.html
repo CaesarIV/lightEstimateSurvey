@@ -15,79 +15,15 @@
             <h1 class="mat-h1">Solo Tests</h1>            
             <mat-accordion>
 
-              <mat-expansion-panel [expanded]="stepSolo === 0" (opened)="setStepSolo(0)" style="width: fit-content;">
+              <mat-expansion-panel *ngFor="let question of questions" [expanded]="stepSolo === question.id" (opened)="setStepSolo(question.id)" style="width: 95%;">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    Image 1                                            
+                      #{{question.id + 1}} {{question.type}}                                      
                   </mat-panel-title>
-                  <mat-icon color="primary" *ngIf="answeredSolo[0]" style="margin-right: 2%;">check</mat-icon>                    
+                  <mat-icon color="primary" *ngIf="answeredSolo[question.id]" style="margin-right: 2%;">check</mat-icon>                    
                 </mat-expansion-panel-header>   
-                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                <mat-action-row>                        
-                  <span>
-                    Too Dark
-                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
-                    Too Bright
-                  </span>
-                  <span class="spacer"></span>
-                  <button (click)="saveAnswerSolo(0);" mat-button>Submit & Next</button>
-                </mat-action-row>                                        
-                <br>                                      
-              </mat-expansion-panel>     
-              <br>
-                            
-              <mat-expansion-panel [expanded]="stepSolo === 1" (opened)="setStepSolo(1)" style="width: fit-content;">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Image 2                                           
-                  </mat-panel-title>
-                  <mat-icon color="primary" *ngIf="answeredSolo[1]" style="margin-right: 2%;">check</mat-icon>                    
-                </mat-expansion-panel-header>   
-                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                <mat-action-row>                        
-                  <span>
-                    Too Dark
-                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
-                    Too Bright
-                  </span>
-                  <span class="spacer"></span>
-                  <button (click)="saveAnswerSolo(1);" mat-button>Submit & Next</button>
-                </mat-action-row>                                        
-                <br>                                      
-              </mat-expansion-panel>     
-              <br>
-              
-              <mat-expansion-panel [expanded]="stepSolo === 2" (opened)="setStepSolo(2)" style="width: fit-content;">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Image 3                                            
-                  </mat-panel-title>
-                  <mat-icon color="primary" *ngIf="answeredSolo[2]" style="margin-right: 2%;">check</mat-icon>                    
-                </mat-expansion-panel-header>   
-                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                <mat-action-row>                        
-                  <span>
-                    Too Dark
-                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
-                    Too Bright
-                  </span>
-                  <span class="spacer"></span>
-                  <button (click)="saveAnswerSolo(2);" mat-button>Submit & Next</button>
-                </mat-action-row>                                        
-                <br>                                      
-              </mat-expansion-panel>     
-              <br>
-
-
-              
-              
-              <mat-expansion-panel style="width: fit-content;">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Video 1                                            
-                  </mat-panel-title>                    
-                </mat-expansion-panel-header>   
-                <vg-player>
+                <img *ngIf="question.type == 'Image'" height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <vg-player *ngIf="question.type == 'Video'">
                     <vg-overlay-play></vg-overlay-play>
                     <vg-buffering></vg-buffering>
                 
@@ -120,54 +56,15 @@
                 <mat-action-row>                        
                   <span>
                     Too Dark
-                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
+                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" (input)='changeMatslider(question.id,$event)' [value]="answersSolo[question.id]"></mat-slider>
                     Too Bright
                   </span>
                   <span class="spacer"></span>
-                  <button mat-button>Submit & Next</button>
+                  <button (click)="saveAnswerSolo(question.id);" mat-button>Submit & Next</button>
                 </mat-action-row>                                        
                 <br>                                      
               </mat-expansion-panel>     
-              <br>
-              
-              <mat-expansion-panel style="width: fit-content;">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Image 4                                            
-                  </mat-panel-title>                    
-                </mat-expansion-panel-header>   
-                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                <mat-action-row>                        
-                  <span>
-                    Too Dark
-                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
-                    Too Bright
-                  </span>
-                  <span class="spacer"></span>
-                  <button mat-button>Submit & Next</button>
-                </mat-action-row>                                        
-                <br>                                      
-              </mat-expansion-panel>     
-              <br>
-              
-              <mat-expansion-panel style="width: fit-content;">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Image 5                                            
-                  </mat-panel-title>                    
-                </mat-expansion-panel-header>   
-                <img height="20%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                <mat-action-row>                        
-                  <span>
-                    Too Dark
-                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" value="50"></mat-slider>
-                    Too Bright
-                  </span>
-                  <span class="spacer"></span>
-                  <button mat-button>Submit & Next</button>
-                </mat-action-row>                                        
-                <br>                                      
-              </mat-expansion-panel>     
+              <br>              
              
             </mat-accordion>                           
           </div>
@@ -176,7 +73,7 @@
           <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
         </mat-form-field-->        
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button (click)="submitSolo();" mat-button matStepperNext>Submit Solo Tests</button>
         </div>
       </form>
     </mat-step>
