@@ -47,6 +47,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from './../environments/environment';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstPageComponent },
@@ -114,7 +115,7 @@ const appRoutes: Routes = [
     MatSortModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-third-page',
@@ -10,6 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 export class ThirdPageComponent implements OnInit {
   
+  user = '';
   soloQuestions = [
     {id: 0, type:'Image', url:'', answer:''},
     {id: 1, type:'Image', url:'', answer:''},
@@ -20,13 +22,13 @@ export class ThirdPageComponent implements OnInit {
     {id: 6, type:'Image', url:'', answer:''}
   ];
 
-  constructor(private _formBuilder: FormBuilder) { 
+  constructor(private _formBuilder: FormBuilder,private afs: AngularFirestore) { 
     
   }
   isLinear = true;  
   soloCompleted = false;
   stepSolo = 0;
-  
+
   formatLabel(value: number | null) {
     if (!value) {
       return 0;
@@ -61,10 +63,13 @@ export class ThirdPageComponent implements OnInit {
   }
 
   submitSolo(){
-    
+    var answerKey = 'soloAnswers';
     for (let index = 0; index < this.soloQuestions.length; index++) {      
       console.log("Answer of "+index+ ": "+this.soloQuestions[index].answer);
-    }
+      answerKey = 'soloAnswers_'+index;
+      console.log(answerKey)
+      this.afs.collection('participants').doc(this.user).collection('soloAnswers').doc(answerKey).set(this.soloQuestions[index]);
+    }    
       
     
   }
@@ -81,8 +86,19 @@ export class ThirdPageComponent implements OnInit {
     this.stepSolo--;
   }
 
-  ngOnInit() {
-    
+  makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+    return text;
+  }
+  
+
+  ngOnInit() {    
+    this.user = 'User_'+this.makeid();
   }
 
 }
