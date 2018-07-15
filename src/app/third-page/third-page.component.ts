@@ -18,7 +18,7 @@ export class ThirdPageComponent implements OnInit {
   soloQuestions = [
     {id: 0, type:'Image', url:'../../assets/Images/rc1V.png', answer:''},
     {id: 1, type:'Image', url:'../../assets/Images/rc3V.png', answer:''},
-    {id: 2, type:'Video', url:'http://static.videogular.com/assets/videos/videogular.mp4', answer:''},
+    {id: 2, type:'Video', url:'../../assets/Videos/rc3V.mov', answer:''},
     {id: 3, type:'Image', url:'../../assets/Images/vf3s.png', answer:''},
     {id: 4, type:'Image', url:'../../assets/Images/rk2s.png', answer:''},
     {id: 5, type:'Image', url:'../../assets/Images/rc0s.png', answer:''},
