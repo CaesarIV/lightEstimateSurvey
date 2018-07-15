@@ -43,11 +43,12 @@ import {VgControlsModule} from 'videogular2/controls';
 import {VgOverlayPlayModule} from 'videogular2/overlay-play';
 import {VgBufferingModule} from 'videogular2/buffering';
 import 'hammerjs';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule,FirebaseOptionsToken,FirebaseAppNameToken,FirebaseAppConfigToken } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from './../environments/environment';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { IdService } from './services/id.service'
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstPageComponent },
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     ThirdPageComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebase),
+    //AngularFireModule.initializeApp(environment.firebase),
+    FormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     VgCoreModule,
@@ -115,7 +117,12 @@ const appRoutes: Routes = [
     MatSortModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [AngularFirestore],
+  providers: [
+    AngularFirestore, IdService,
+    { provide: FirebaseOptionsToken, useValue: environment.firebase },
+    { provide: FirebaseAppNameToken, useValue: 'stalldata' },
+    { provide: FirebaseAppConfigToken, useValue: undefined }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

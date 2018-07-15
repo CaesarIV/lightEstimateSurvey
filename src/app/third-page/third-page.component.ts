@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { IdService } from '../services/id.service';
+import { VgAPI } from 'videogular2/core';
 
 @Component({
   selector: 'app-third-page',
@@ -10,19 +12,21 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 
 
 export class ThirdPageComponent implements OnInit {
-  
+  api:VgAPI;
+  idFromService : string; 
   user = '';
   soloQuestions = [
-    {id: 0, type:'Image', url:'', answer:''},
-    {id: 1, type:'Image', url:'', answer:''},
-    {id: 2, type:'Video', url:'', answer:''},
-    {id: 3, type:'Image', url:'', answer:''},
-    {id: 4, type:'Image', url:'', answer:''},
-    {id: 5, type:'Video', url:'', answer:''},
-    {id: 6, type:'Image', url:'', answer:''}
+    {id: 0, type:'Image', url:'../../assets/Images/rc1V.png', answer:''},
+    {id: 1, type:'Image', url:'../../assets/Images/rc3V.png', answer:''},
+    {id: 2, type:'Video', url:'http://static.videogular.com/assets/videos/videogular.mp4', answer:''},
+    {id: 3, type:'Image', url:'../../assets/Images/vf3s.png', answer:''},
+    {id: 4, type:'Image', url:'../../assets/Images/rk2s.png', answer:''},
+    {id: 5, type:'Image', url:'../../assets/Images/rc0s.png', answer:''},
+    {id: 6, type:'Image', url:'../../assets/Images/vf1s.png', answer:''},
+    {id: 7, type:'Image', url:'../../assets/Images/rk3s.png', answer:''},
   ];
 
-  constructor(private _formBuilder: FormBuilder,private afs: AngularFirestore) { 
+  constructor(private _formBuilder: FormBuilder,private afs: AngularFirestore, private idServce : IdService) { 
     
   }
   isLinear = true;  
@@ -39,6 +43,12 @@ export class ThirdPageComponent implements OnInit {
     }
 
     return value+'%';
+  }
+
+  onPlayerReady(api:VgAPI) {
+    this.api = api;
+    this.api.volume = 0;
+    console.log("Well?");
   }
 
   changeMatslider(question:number,slider) {
@@ -97,8 +107,10 @@ export class ThirdPageComponent implements OnInit {
   }
   
 
-  ngOnInit() {    
-    this.user = 'User_'+this.makeid();
+  ngOnInit() {  
+    this.idServce.globalIdObs$.subscribe( data => this.idFromService = data);
+    this.user = this.idFromService;
+    
   }
 
 }

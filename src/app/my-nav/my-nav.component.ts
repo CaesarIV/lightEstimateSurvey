@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IdService } from '../services/id.service';
 
 @Component({
   selector: 'my-nav',
@@ -10,12 +11,31 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./my-nav.component.css']
 })
 export class MyNavComponent {
+  public userID ="";
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
     
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private idService: IdService) {
+    this.userID = this.makeid();    
+    this.idService.updateState(this.userID);
+    this.idService.globalIdObs$.subscribe(data => this.userID = data);
+
+  }
+
+
+  makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+    return text;
+  }
   
   }
+
+

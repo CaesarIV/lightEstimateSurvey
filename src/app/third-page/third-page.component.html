@@ -1,3 +1,4 @@
+
 <h1 class="text-flicker-in-glow">The Survey</h1>     
 
 <mat-card>
@@ -23,8 +24,8 @@
                   </mat-panel-title>
                   <mat-icon color="primary" *ngIf="!question.answer==''" style="margin-right: 2%;">check</mat-icon>                    
                 </mat-expansion-panel-header>   
-                <img *ngIf="question.type == 'Image'" class="center" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                <vg-player *ngIf="question.type == 'Video'">
+                <img *ngIf="question.type == 'Image'" width="400px" class="center" src="{{question.url}}" alt="Missing Image?">
+                <vg-player class="center" (onPlayerReady)="onPlayerReady($event)" *ngIf="question.type == 'Video'">
                     <vg-overlay-play></vg-overlay-play>
                     <vg-buffering></vg-buffering>
                 
@@ -44,14 +45,12 @@
                         <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
                         <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
                 
-                        <vg-track-selector></vg-track-selector>
-                        <vg-mute></vg-mute>
-                        <vg-volume></vg-volume>
+                        <vg-track-selector></vg-track-selector>                        
                 
                         <vg-fullscreen></vg-fullscreen>
                     </vg-controls>
                     <video [vgMedia]="media" #media id="singleVideo" preload="auto">
-                        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+                        <source src="{{question.url}}" type="video/mp4">
                     </video>
                 </vg-player>
                 <mat-action-row>                        
