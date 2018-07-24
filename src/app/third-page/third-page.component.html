@@ -49,14 +49,14 @@
                 
                         <vg-fullscreen></vg-fullscreen>
                     </vg-controls>
-                    <video [vgMedia]="media" #media id="singleVideo" preload="auto">
+                    <video [vgMedia]="media" #media id="singleVideo" autoplay="true" loop="true" preload="auto">
                         <source src="{{question.url}}" type="video/mp4">
                     </video>
                 </vg-player>
                 <mat-action-row>                        
                   <span>
                     Too Dark |
-                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" (input)='changeMatslider(question.id,$event)' [value]="question.answer"></mat-slider>
+                    <mat-slider [displayWith]="formatLabel" thumbLabel min="1" max="100" step="1" (input)='changeMatsliderSolo(question.id,$event)' [value]="question.answer"></mat-slider>
                     | Too Bright
                   </span>
                   <span class="spacer"></span>
@@ -81,10 +81,100 @@
         <br>
         Please rate which one looked better, and by how much.
         <br>
-        <br>        
+        <br>
+        
+        <div class="grid-container">
+          <h1 class="mat-h1">Comparative Tests</h1>            
+          <mat-accordion>
+
+            <mat-expansion-panel *ngFor="let question of compQuestions" [expanded]="stepComp === question.id" (opened)="setStepComp(question.id)" style="width: 95%;">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    #{{question.id + 1}} {{question.type}}                                      
+                </mat-panel-title>
+                <mat-icon color="primary" *ngIf="!question.answer==''" style="margin-right: 2%;">check</mat-icon>                    
+              </mat-expansion-panel-header>   
+              <div class="centerComp" *ngIf="question.type == 'Image'">
+                <img *ngIf="question.type == 'Image'" width="400px" src="{{question.url1}}" alt="Comp Image 1">
+                <img *ngIf="question.type == 'Image'" width="400px" src="{{question.url2}}" alt="Comp Image 2">
+              </div>
+
+              <div class="centerComp" *ngIf="question.type == 'Video'">
+              <vg-player class="videoWidth" (onPlayerReady)="onPlayerReady($event)" *ngIf="question.type == 'Video'">
+                  <vg-overlay-play></vg-overlay-play>
+                  <vg-buffering></vg-buffering>
+              
+                  <vg-scrub-bar>
+                      <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                      <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                  </vg-scrub-bar>
+              
+                  <vg-controls>
+                      <vg-play-pause></vg-play-pause>
+                      <vg-playback-button></vg-playback-button>
+              
+                      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+              
+                      <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+              
+                      <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                      <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+              
+                      <vg-track-selector></vg-track-selector>                        
+              
+                      <vg-fullscreen></vg-fullscreen>
+                  </vg-controls>
+                  <video [vgMedia]="media" autoplay="true" #media id="video1" loop="true" preload="auto">
+                      <source src="{{question.url1}}" type="video/mp4">
+                  </video>
+              </vg-player>
+              <vg-player class="videoWidth"  (onPlayerReady)="onPlayerReady($event)" *ngIf="question.type == 'Video'">
+                <vg-overlay-play></vg-overlay-play>
+                <vg-buffering></vg-buffering>
+            
+                <vg-scrub-bar>
+                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                    <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                </vg-scrub-bar>
+            
+                <vg-controls>
+                    <vg-play-pause></vg-play-pause>
+                    <vg-playback-button></vg-playback-button>
+            
+                    <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+            
+                    <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+            
+                    <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                    <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+            
+                    <vg-track-selector></vg-track-selector>                        
+            
+                    <vg-fullscreen></vg-fullscreen>
+                </vg-controls>
+                <video [vgMedia]="mediaTwo" autoplay="true" #mediaTwo id="video2" loop="true" preload="auto">
+                    <source src="{{question.url2}}" type="video/mp4">
+                </video>
+            </vg-player>
+            </div>
+              <mat-action-row>                        
+                <span>
+                  Left |
+                  <mat-slider thumbLabel min="1" max="3" step="1" (input)='changeMatsliderComp(question.id,$event)' [value]="question.answer"></mat-slider>
+                  | Right
+                </span>
+                <span class="spacer"></span>
+                <button (click)="saveAnswerComp(question.id);" [disabled]="question.answer==''" mat-button>Next</button>
+              </mat-action-row>                                        
+              <br>                                      
+            </mat-expansion-panel>     
+            <br>              
+           
+          </mat-accordion>                           
+        </div>              
         <div>
           <button mat-button color="warn" matStepperPrevious>Back</button>
-          <button mat-button color="primary" matStepperNext>Submit Comparative Tests</button>
+          <button mat-button color="primary"  (click)="submitComp();" [disabled]="!compCompleted" matStepperNext>Submit Comparative Tests</button>
         </div>      
     </mat-step>
 
@@ -99,7 +189,7 @@
       <br>
       <div>
           <button mat-button color="warn" matStepperPrevious>Back</button>
-          <button mat-button color="primary" matStepperNext>Submit Material Investigation</button>
+          <button mat-button color="primary"matStepperNext>Submit Material Investigation</button>
       </div>
     </mat-step>
     <mat-step>
