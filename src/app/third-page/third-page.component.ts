@@ -17,24 +17,29 @@ export class ThirdPageComponent implements OnInit {
   user = '';
   soloQuestions = [
     {id: 0, type:'Image', url:'../../assets/Images/rc1V.png', answer:''},
-    {id: 1, type:'Image', url:'../../assets/Images/rc3V.png', answer:''},
-    {id: 2, type:'Video', url:'../../assets/Videos/rc3V.mov', answer:''},
-    {id: 3, type:'Image', url:'../../assets/Images/vf3s.png', answer:''},
+    {id: 1, type:'Image', url:'../../assets/Images/rc3s.png', answer:''},
+    {id: 2, type:'Image', url:'../../assets/Images/rk3s.png', answer:''},
+    {id: 3, type:'Image', url:'../../assets/Images/vf0s.png', answer:''},
     {id: 4, type:'Image', url:'../../assets/Images/rk2s.png', answer:''},
     {id: 5, type:'Image', url:'../../assets/Images/rc0s.png', answer:''},
     {id: 6, type:'Image', url:'../../assets/Images/vf1s.png', answer:''},
-    {id: 7, type:'Image', url:'../../assets/Images/rk3s.png', answer:''},
+    {id: 7, type:'Image', url:'../../assets/Images/rc2s.png', answer:''},
+    {id: 8, type:'Image', url:'../../assets/Images/rk1s.png', answer:''},
+    {id: 9, type:'Image', url:'../../assets/Images/vf3s.png', answer:''},
+    {id: 10, type:'Image', url:'../../assets/Images/rk0s.png', answer:''},
+    {id: 11, type:'Image', url:'../../assets/Images/vf2s.png', answer:''},
   ];
 
   compQuestions = [
     {id: 0, type:'Image', url1:'../../assets/Images/rc1s.png', url2:'../../assets/Images/vf1s.png', answer:''},
-    {id: 1, type:'Image', url1:'../../assets/Images/rc3s.png', url2:'../../assets/Images/rk3s.png', answer:''},
-    {id: 2, type:'Video', url1:'../../assets/Videos/rc0s.mov', url2:'../../assets/Videos/vf0s.mov', answer:''},
-    {id: 3, type:'Image', url1:'../../assets/Images/vf2s.png', url2:'../../assets/Images/rk2s.png', answer:''},
-    {id: 4, type:'Video', url1:'../../assets/Videos/vf2V.mov', url2:'../../assets/Videos/rk2V.mov', answer:''},
-    {id: 5, type:'Image', url1:'../../assets/Images/rc0s.png', url2:'../../assets/Images/rc1V.png', answer:''},
-    {id: 6, type:'Video', url1:'../../assets/Videos/vf1V.mov', url2:'../../assets/Videos/rc1V.mov', answer:''},
-    {id: 7, type:'Video', url1:'../../assets/Videos/rkS.mov', url2:'../../assets/Videos/rcS.mov', answer:''},
+    {id: 1, type:'Image', url1:'../../assets/Images/rk3s.png', url2:'../../assets/Images/rc3s.png', answer:''},
+    {id: 2, type:'Image', url1:'../../assets/Images/vf2s.png', url2:'../../assets/Images/rk2s.png', answer:''},
+    {id: 3, type:'Image', url1:'../../assets/Images/rc0s.png', url2:'../../assets/Images/vf0s.png', answer:''},
+    {id: 4, type:'Image', url1:'../../assets/Images/vf2V.png', url2:'../../assets/Images/rk2V.png', answer:''},
+    {id: 5, type:'Image', url1:'../../assets/Images/vf0s.png', url2:'../../assets/Images/rk0s.png', answer:''},
+    {id: 6, type:'Image', url1:'../../assets/Images/vf1V.png', url2:'../../assets/Images/rc1V.png', answer:''},
+    {id: 7, type:'Image', url1:'../../assets/Images/rk2s.png', url2:'../../assets/Images/rc2s.png', answer:''},
+    {id: 8, type:'Image', url1:'../../assets/Images/rk0s.png', url2:'../../assets/Images/rc0s.png', answer:''},
   ];
 
   matQuestions = [
