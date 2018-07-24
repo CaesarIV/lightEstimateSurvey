@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { IdService } from '../services/id.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-first-page',
@@ -32,11 +33,12 @@ export class FirstPageComponent implements OnInit {
   arWare = new FormControl();  
   arWareList: string[] = ['Smarphone / Tablet', 'AR-Headset', 'AR-Kiosk', 'Other'];
 
-  constructor(private afs: AngularFirestore, private idService:IdService) { }
+  constructor(private afs: AngularFirestore, private idService:IdService, private location: Location) { }
 
   ngOnInit() {    
     this.idService.globalIdObs$.subscribe(data => this.oldId = data);    
     this.fixedId = this.oldId;
+    this.location.replaceState(this.fixedId+"/ar-experience");
   }
 
   onNameChange(nameValue : string){

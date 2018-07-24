@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-second-page',
@@ -8,9 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class SecondPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit() {
+    this.location.replaceState("/welcome");
   }
 
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { IdService } from '../services/id.service';
 import { VgAPI } from 'videogular2/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-third-page',
@@ -64,7 +65,7 @@ export class ThirdPageComponent implements OnInit {
     {id: 7, type:'Video', url1:'../../assets/Videos/rkS.mov', url2:'../../assets/Videos/rcS.mov', answer:''},
   ];
 
-  constructor(private _formBuilder: FormBuilder,private afs: AngularFirestore, private idServce : IdService) { 
+  constructor(private _formBuilder: FormBuilder,private afs: AngularFirestore, private idServce : IdService, private location: Location) { 
     
   }
   isLinear = true;  
@@ -292,7 +293,7 @@ export class ThirdPageComponent implements OnInit {
   ngOnInit() {  
     this.idServce.globalIdObs$.subscribe( data => this.idFromService = data);
     this.user = this.idFromService;
-    
+    this.location.replaceState(this.user+"/lightEst-survey");
   }
 
 }

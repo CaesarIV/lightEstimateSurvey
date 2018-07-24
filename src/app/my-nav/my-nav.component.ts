@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -18,11 +19,11 @@ export class MyNavComponent {
       map(result => result.matches)
     );
     
-  constructor(private breakpointObserver: BreakpointObserver, private idService: IdService) {
+  constructor(private breakpointObserver: BreakpointObserver, private idService: IdService, private router: Router) {
     this.userID = this.makeid();    
     this.idService.updateState(this.userID);
     this.idService.globalIdObs$.subscribe(data => this.userID = data);
-
+    this.router.navigate(['/second-page']);
   }
 
 
