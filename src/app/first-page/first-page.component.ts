@@ -75,12 +75,12 @@ export class FirstPageComponent implements OnInit {
     if (!(typeof this.arExpText === "undefined")) 
     this.backgroundQuestions[0].expArMore = this.arExpText;
 
-    console.log("Type of ID: " + (typeof this.changeId));
-    console.log("Type of Phone: " + (typeof this.phones));
-    console.log("Type of ArWare: " + (typeof this.arWare));
-    console.log("Type of AgeGroup: " + (typeof this.ageGroup));
-    console.log("Type of Exp: " + (typeof this.expWithAr));
-    console.log("Type of IarExpTextD: " + (typeof this.arExpText));    
+    // console.log("Type of ID: " + (typeof this.changeId));
+    // console.log("Type of Phone: " + (typeof this.phones));
+    // console.log("Type of ArWare: " + (typeof this.arWare));
+    // console.log("Type of AgeGroup: " + (typeof this.ageGroup));
+    // console.log("Type of Exp: " + (typeof this.expWithAr));
+    // console.log("Type of IarExpTextD: " + (typeof this.arExpText));    
     
     if (!(typeof this.newId === "undefined")){ 
       this.afs.collection('participants').doc(this.newId).collection('backgroundAnswers').doc("background").set({...this.backgroundQuestions});    

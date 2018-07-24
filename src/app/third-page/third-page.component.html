@@ -9,7 +9,7 @@
         First I'd like you to evaluate <strong>how well do these materials fit</strong> given the ambient light of their surroundings. <sub>(Do they look too bright? Or Too dark? Or do they fit well.)</sub>
         <br>
         <br>
-        Please watch these videos (in no order) and fill out the ratings.
+        Please view these test cases and drag the slide appropriately. (Left = Too Dark, Right = Too Bright, Center = O.k)
         <br>
         <br>
         
@@ -79,7 +79,7 @@
         Now we're going to have you <strong>compare between the different platforms.</strong>
         <br>
         <br>
-        Please rate which one looked better, and by how much.
+        Please rate which one looked better. (Center the slider if both look the same.)
         <br>
         <br>
         
@@ -174,7 +174,7 @@
         </div>              
         <div>
           <button mat-button color="warn" matStepperPrevious>Back</button>
-          <button mat-button color="primary"  (click)="submitComp();" [disabled]="!compCompleted" matStepperNext>Submit Comparative Tests</button>
+          <button mat-button color="primary" (click)="submitComp();" [disabled]="!compCompleted" matStepperNext>Submit Comparative Tests</button>
         </div>      
     </mat-step>
 
@@ -184,7 +184,7 @@
       Next we want to focus on the materials. 
       <br>
       <br>
-      Please watch these videos and rank which materials looked better for each video.
+      Please watch these videos and rank which material looked best for each test case.
       <br>
       <br>
       <div class="grid-container">
@@ -261,9 +261,98 @@
         If that didn't make sense to you don't worry. <sub>(It didn't make sense to me either)</sub> Just watch the videos and rate which one looks better, and by how much.
         <br>
         <br>
+        <div class="grid-container">
+          <h1 class="mat-h1">Light Level Tests</h1>            
+          <mat-accordion>
+
+            <mat-expansion-panel *ngFor="let question of lghtVarQuestions" [expanded]="stepLghtVar === question.id" (opened)="setStepLght(question.id)" style="width: 95%;">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    #{{question.id + 1}} {{question.type}}                                      
+                </mat-panel-title>
+                <mat-icon color="primary" *ngIf="!question.answer==''" style="margin-right: 2%;">check</mat-icon>                    
+              </mat-expansion-panel-header>   
+              <div class="centerComp" *ngIf="question.type == 'Image'">
+                <img *ngIf="question.type == 'Image'" width="400px" src="{{question.url1}}" alt="Comp Image 1">
+                <img *ngIf="question.type == 'Image'" width="400px" src="{{question.url2}}" alt="Comp Image 2">
+              </div>
+
+              <div class="centerComp" *ngIf="question.type == 'Video'">
+              <vg-player class="videoWidth" (onPlayerReady)="onPlayerReady($event)" *ngIf="question.type == 'Video'">
+                  <vg-overlay-play></vg-overlay-play>
+                  <vg-buffering></vg-buffering>
+              
+                  <vg-scrub-bar>
+                      <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                      <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                  </vg-scrub-bar>
+              
+                  <vg-controls>
+                      <vg-play-pause></vg-play-pause>
+                      <vg-playback-button></vg-playback-button>
+              
+                      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+              
+                      <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+              
+                      <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                      <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+              
+                      <vg-track-selector></vg-track-selector>                        
+              
+                      <vg-fullscreen></vg-fullscreen>
+                  </vg-controls>
+                  <video [vgMedia]="media"#media id="video1" preload="auto">
+                      <source src="{{question.url1}}" type="video/mp4">
+                  </video>
+              </vg-player>
+              <vg-player class="videoWidth"  (onPlayerReady)="onPlayerReady($event)" *ngIf="question.type == 'Video'">
+                <vg-overlay-play></vg-overlay-play>
+                <vg-buffering></vg-buffering>
+            
+                <vg-scrub-bar>
+                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                    <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                </vg-scrub-bar>
+            
+                <vg-controls>
+                    <vg-play-pause></vg-play-pause>
+                    <vg-playback-button></vg-playback-button>
+            
+                    <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+            
+                    <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+            
+                    <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                    <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+            
+                    <vg-track-selector></vg-track-selector>                        
+            
+                    <vg-fullscreen></vg-fullscreen>
+                </vg-controls>
+                <video [vgMedia]="mediaTwo" #mediaTwo id="video2" preload="auto">
+                    <source src="{{question.url2}}" type="video/mp4">
+                </video>
+            </vg-player>
+            </div>
+              <mat-action-row>                        
+                <span>
+                  Left |
+                  <mat-slider [displayWith]="formatLabelComp" thumbLabel min="1" max="3" step="1" (input)='changeMatsliderLght(question.id,$event)' [value]="question.answer"></mat-slider>
+                  | Right
+                </span>
+                <span class="spacer"></span>
+                <button (click)="saveAnswerLght(question.id);" [disabled]="question.answer==''" mat-button>Next</button>
+              </mat-action-row>                                        
+              <br>                                      
+            </mat-expansion-panel>     
+            <br>              
+           
+          </mat-accordion>                           
+        </div>    
         <div>
             <button mat-button color="warn" matStepperPrevious>Back</button>
-            <button mat-button color="primary" matStepperNext>Submit Light Level Investigation</button>
+            <button mat-button color="primary" (click)="submitLght();" [disabled]="!lghtVarCompleted" matStepperNext>Submit Light Level Investigation</button>
         </div>
       </mat-step>
       <mat-step>

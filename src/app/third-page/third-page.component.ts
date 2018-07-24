@@ -49,13 +49,13 @@ export class ThirdPageComponent implements OnInit {
   ];
 
   lghtVarQuestions = [
-    {id: 0, type:'Image', url1:'../../assets/Images/rc1s.png', url2:'../../assets/Images/vf1s.png', answer:''},
-    {id: 1, type:'Image', url1:'../../assets/Images/rc3s.png', url2:'../../assets/Images/rk3s.png', answer:''},
-    {id: 2, type:'Video', url1:'../../assets/Videos/rc0s.mov', url2:'../../assets/Videos/vf0s.mov', answer:''},
-    {id: 3, type:'Image', url1:'../../assets/Images/vf2s.png', url2:'../../assets/Images/rk2s.png', answer:''},
-    {id: 4, type:'Video', url1:'../../assets/Videos/vf2V.mov', url2:'../../assets/Videos/rk2V.mov', answer:''},
-    {id: 5, type:'Image', url1:'../../assets/Images/rc0s.png', url2:'../../assets/Images/rc1V.png', answer:''},
-    {id: 6, type:'Video', url1:'../../assets/Videos/vf1V.mov', url2:'../../assets/Videos/rc1V.mov', answer:''},
+    {id: 0, type:'Video', url1:'../../assets/Videos/rc1V.mov', url2:'../../assets/Videos/vf1V.mov', answer:''},
+    {id: 1, type:'Video', url1:'../../assets/Videos/rk3V.mov', url2:'../../assets/Videos/rc3V.mov', answer:''},
+    {id: 2, type:'Video', url1:'../../assets/Videos/vf2V.mov', url2:'../../assets/Videos/rk2V.mov', answer:''},
+    {id: 3, type:'Video', url1:'../../assets/Videos/rc1V.mov', url2:'../../assets/Videos/rc3V.mov', answer:''},
+    {id: 4, type:'Video', url1:'../../assets/Videos/vf3V.mov', url2:'../../assets/Videos/vf1V.mov', answer:''},
+    {id: 5, type:'Video', url1:'../../assets/Videos/rk1V.mov', url2:'../../assets/Videos/rk3V.mov', answer:''},
+    {id: 6, type:'Video', url1:'../../assets/Videos/rcS.mov', url2:'../../assets/Videos/vfS.mov', answer:''},
     {id: 7, type:'Video', url1:'../../assets/Videos/rkS.mov', url2:'../../assets/Videos/rcS.mov', answer:''},
   ];
 
@@ -137,7 +137,6 @@ export class ThirdPageComponent implements OnInit {
       }         
     }
     this.matCompleted = true;    
-    console.log("Question: "+question+": "+answerMat);
   }
 
   changeMatsliderLght(question:number,slider) {
@@ -197,9 +196,7 @@ export class ThirdPageComponent implements OnInit {
   submitSolo(){
     var answerKey = 'soloAnswers';
     for (let index = 0; index < this.soloQuestions.length; index++) {      
-      console.log("Answer of "+index+ ": "+this.soloQuestions[index].answer);
       answerKey = 'soloAnswers_'+index;
-      console.log(answerKey)
       this.afs.collection('participants').doc(this.user).collection('soloAnswers').doc(answerKey).set(this.soloQuestions[index]);
     }    
   }
@@ -207,9 +204,7 @@ export class ThirdPageComponent implements OnInit {
   submitComp(){
     var answerKey = 'compAnswers';
     for (let index = 0; index < this.compQuestions.length; index++) {      
-      console.log("Answer of "+index+ ": "+this.compQuestions[index].answer);
       answerKey = 'compAnswers_'+index;
-      console.log(answerKey)
       this.afs.collection('participants').doc(this.user).collection('compAnswers').doc(answerKey).set(this.compQuestions[index]);
     }    
   }
@@ -217,9 +212,7 @@ export class ThirdPageComponent implements OnInit {
   submitMat(){
     var answerKey = 'matAnswers';
     for (let index = 0; index < this.matQuestions.length; index++) {      
-      console.log("Answer of "+index+ ": "+this.matQuestions[index].answer);
       answerKey = 'matAnswers_'+index;
-      console.log(answerKey)
       this.afs.collection('participants').doc(this.user).collection('matAnswers').doc(answerKey).set(this.matQuestions[index]);
     }    
   }
@@ -227,9 +220,7 @@ export class ThirdPageComponent implements OnInit {
   submitLght(){
     var answerKey = 'lghtAnswers';
     for (let index = 0; index < this.lghtVarQuestions.length; index++) {      
-      console.log("Answer of "+index+ ": "+this.lghtVarQuestions[index].answer);
       answerKey = 'lghtAnswers_'+index;
-      console.log(answerKey)
       this.afs.collection('participants').doc(this.user).collection('lghtAnswers').doc(answerKey).set(this.lghtVarQuestions[index]);
     }    
   }
