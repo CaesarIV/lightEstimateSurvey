@@ -37,14 +37,42 @@ export class ThirdPageComponent implements OnInit {
     {id: 7, type:'Video', url1:'../../assets/Videos/rkS.mov', url2:'../../assets/Videos/rcS.mov', answer:''},
   ];
 
+  matQuestions = [
+    {id: 0, type:'Image', url:'../../assets/Images/rc1V.png', answer:''},
+    {id: 1, type:'Image', url:'../../assets/Images/rc3V.png', answer:''},
+    {id: 2, type:'Video', url:'../../assets/Videos/rc3V.mov', answer:''},
+    {id: 3, type:'Image', url:'../../assets/Images/vf3s.png', answer:''},
+    {id: 4, type:'Image', url:'../../assets/Images/rk2s.png', answer:''},
+    {id: 5, type:'Image', url:'../../assets/Images/rc0s.png', answer:''},
+    {id: 6, type:'Image', url:'../../assets/Images/vf1s.png', answer:''},
+    {id: 7, type:'Image', url:'../../assets/Images/rk3s.png', answer:''},
+  ];
+
+  lghtVarQuestions = [
+    {id: 0, type:'Image', url1:'../../assets/Images/rc1s.png', url2:'../../assets/Images/vf1s.png', answer:''},
+    {id: 1, type:'Image', url1:'../../assets/Images/rc3s.png', url2:'../../assets/Images/rk3s.png', answer:''},
+    {id: 2, type:'Video', url1:'../../assets/Videos/rc0s.mov', url2:'../../assets/Videos/vf0s.mov', answer:''},
+    {id: 3, type:'Image', url1:'../../assets/Images/vf2s.png', url2:'../../assets/Images/rk2s.png', answer:''},
+    {id: 4, type:'Video', url1:'../../assets/Videos/vf2V.mov', url2:'../../assets/Videos/rk2V.mov', answer:''},
+    {id: 5, type:'Image', url1:'../../assets/Images/rc0s.png', url2:'../../assets/Images/rc1V.png', answer:''},
+    {id: 6, type:'Video', url1:'../../assets/Videos/vf1V.mov', url2:'../../assets/Videos/rc1V.mov', answer:''},
+    {id: 7, type:'Video', url1:'../../assets/Videos/rkS.mov', url2:'../../assets/Videos/rcS.mov', answer:''},
+  ];
+
   constructor(private _formBuilder: FormBuilder,private afs: AngularFirestore, private idServce : IdService) { 
     
   }
   isLinear = true;  
   soloCompleted = false;
   compCompleted = false;
+  matCompleted = false;
+  lghtVarCompleted = false;
   stepSolo = 0;
   stepComp = 0;
+  stepMat = 0;
+  stepLghtVar = 0;
+
+  matGroup="";
 
   formatLabel(value: number | null) {
     if (!value) {
@@ -58,10 +86,27 @@ export class ThirdPageComponent implements OnInit {
     return value+'%';
   }
 
+  formatLabelComp(value: number | null) {
+    if (!value) {
+      return 0;
+    }
+
+    if (value == 1) {
+      return '<';
+    }
+    if (value == 2) {
+      return '=';
+    }
+    if (value == 3) {
+      return '>';
+    }
+    return value
+    ;
+  }
+
   onPlayerReady(api:VgAPI) {
     this.api = api;
     this.api.volume = 0;
-    console.log("Well?");
   }
 
   changeMatsliderSolo(question:number,slider) {
@@ -82,6 +127,27 @@ export class ThirdPageComponent implements OnInit {
       }         
     }
     this.compCompleted = true;    
+  }
+
+  changeMatRadio(question:number, answerMat) {
+    this.matQuestions[question].answer = answerMat;
+    for (let index = 0; index < this.compQuestions.length; index++) {      
+      if(this.matQuestions[index].answer == ''){
+        return;
+      }         
+    }
+    this.matCompleted = true;    
+    console.log("Question: "+question+": "+answerMat);
+  }
+
+  changeMatsliderLght(question:number,slider) {
+    this.lghtVarQuestions[question].answer = slider.value;
+    for (let index = 0; index < this.lghtVarQuestions.length; index++) {      
+      if(this.lghtVarQuestions[index].answer == ''){
+        return;
+      }         
+    }
+    this.lghtVarCompleted = true;    
   }
 
   saveAnswerSolo(question:number){            
@@ -106,6 +172,28 @@ export class ThirdPageComponent implements OnInit {
     this.compCompleted = true;
   }
 
+  saveAnswerMat(question:number){            
+    this.nextStepMat();
+
+    for (let index = 0; index < this.matQuestions.length; index++) {      
+      if(this.matQuestions[index].answer == ''){
+        return;
+      }         
+    }
+    this.matCompleted = true;
+  }
+
+  saveAnswerLght(question:number){            
+    this.nextStepLght();
+
+    for (let index = 0; index < this.lghtVarQuestions.length; index++) {      
+      if(this.lghtVarQuestions[index].answer == ''){
+        return;
+      }         
+    }
+    this.lghtVarCompleted = true;
+  }
+
   submitSolo(){
     var answerKey = 'soloAnswers';
     for (let index = 0; index < this.soloQuestions.length; index++) {      
@@ -123,6 +211,26 @@ export class ThirdPageComponent implements OnInit {
       answerKey = 'compAnswers_'+index;
       console.log(answerKey)
       this.afs.collection('participants').doc(this.user).collection('compAnswers').doc(answerKey).set(this.compQuestions[index]);
+    }    
+  }
+
+  submitMat(){
+    var answerKey = 'matAnswers';
+    for (let index = 0; index < this.matQuestions.length; index++) {      
+      console.log("Answer of "+index+ ": "+this.matQuestions[index].answer);
+      answerKey = 'matAnswers_'+index;
+      console.log(answerKey)
+      this.afs.collection('participants').doc(this.user).collection('matAnswers').doc(answerKey).set(this.matQuestions[index]);
+    }    
+  }
+
+  submitLght(){
+    var answerKey = 'lghtAnswers';
+    for (let index = 0; index < this.lghtVarQuestions.length; index++) {      
+      console.log("Answer of "+index+ ": "+this.lghtVarQuestions[index].answer);
+      answerKey = 'lghtAnswers_'+index;
+      console.log(answerKey)
+      this.afs.collection('participants').doc(this.user).collection('lghtAnswers').doc(answerKey).set(this.lghtVarQuestions[index]);
     }    
   }
 
@@ -148,6 +256,30 @@ export class ThirdPageComponent implements OnInit {
 
   prevStepComp() {
     this.stepComp--;
+  }
+
+  setStepMat(index: number) {
+    this.stepMat = index;
+  }
+
+  nextStepMat() {
+    this.stepMat++;
+  }
+
+  prevStepMat() {
+    this.stepMat--;
+  }
+
+  setStepLght(index: number) {
+    this.stepLghtVar = index;
+  }
+
+  nextStepLght() {
+    this.stepLghtVar++;
+  }
+
+  prevStepLght() {
+    this.stepLghtVar--;
   }
 
   makeid() {
