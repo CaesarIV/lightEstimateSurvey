@@ -69,7 +69,7 @@
             </mat-accordion>                           
           </div>      
         <div>
-          <button (click)="submitSolo();" [disabled]="!soloCompleted" mat-button color="primary" matStepperNext>Submit Solo Tests</button>
+          <button (click)="submitSolo();" [disabled]="!soloCompleted" mat-button color="primary" matStepperNext>Continue</button>
         </div>      
     </mat-step>
 
@@ -162,6 +162,8 @@
                   Left |
                   <mat-slider [displayWith]="formatLabelComp" thumbLabel min="1" max="3" step="1" (input)='changeMatsliderComp(question.id,$event)' [value]="question.answer"></mat-slider>
                   | Right
+                  <br>
+                  <mat-hint>Please click on the slider to set your choice.</mat-hint>
                 </span>
                 <span class="spacer"></span>
                 <button (click)="saveAnswerComp(question.id);" [disabled]="question.answer==''" mat-button>Next</button>
@@ -174,7 +176,7 @@
         </div>              
         <div>
           <button mat-button color="warn" matStepperPrevious>Back</button>
-          <button mat-button color="primary" (click)="submitComp();" [disabled]="!compCompleted" matStepperNext>Submit Comparative Tests</button>
+          <button mat-button color="primary" (click)="submitComp();" [disabled]="!compCompleted" matStepperNext>Continue</button>
         </div>      
     </mat-step>
 
@@ -184,7 +186,7 @@
       Next we want to focus on the materials. 
       <br>
       <br>
-      Please watch these videos and rank which material looked best for each test case.
+      Please rank which material looked best for each test case.
       <br>
       <br>
       <div class="grid-container">
@@ -230,13 +232,15 @@
             <mat-action-row>                        
               <span>
                 <mat-radio-group [(ngModel)]="matGroup">
-                  <mat-radio-button (change)='changeMatRadio(question.id,"stainless_steel")' [value]="stainless_steel">Stainless Steel</mat-radio-button>
-                  <mat-radio-button (change)='changeMatRadio(question.id,"wood")' [value]="wood">Wood</mat-radio-button>
-                  <mat-radio-button (change)='changeMatRadio(question.id,"dirt")' [value]="dirt">Dirt</mat-radio-button>
+                  <mat-radio-button (change)='changeMatRadio(question.id,"stainless_steel")' value="stainless_steel">Stainless Steel</mat-radio-button>
+                  <mat-radio-button (change)='changeMatRadio(question.id,"wood")' value="wood">Wood</mat-radio-button>
+                  <mat-radio-button (change)='changeMatRadio(question.id,"dirt")' value="dirt">Dirt</mat-radio-button>
                   <br>
-                  <mat-radio-button (change)='changeMatRadio(question.id,"rock")' [value]="rock">Rock</mat-radio-button>
-                  <mat-radio-button (change)='changeMatRadio(question.id,"plastic")' [value]="plastic">Plastic</mat-radio-button>
-                  <mat-radio-button (change)='changeMatRadio(question.id,"cloth")' [value]="cloth">Cloth</mat-radio-button>
+                  <mat-radio-button (change)='changeMatRadio(question.id,"rock")' value="rock">Rock</mat-radio-button>
+                  <mat-radio-button (change)='changeMatRadio(question.id,"plastic")' value="plastic">Plastic</mat-radio-button>
+                  <mat-radio-button (change)='changeMatRadio(question.id,"cloth")' value="cloth">Cloth</mat-radio-button>
+                  <br>
+                  <mat-radio-button (change)='changeMatRadio(question.id,"same")' value="same">All Similar</mat-radio-button>
                 </mat-radio-group>
               </span>
               <span class="spacer"></span>
@@ -250,7 +254,7 @@
       </div>      
       <div>
           <button mat-button color="warn" matStepperPrevious>Back</button>
-          <button mat-button color="primary" (click)="submitMat();" [disabled]="!matCompleted" matStepperNext>Submit Material Investigation</button>
+          <button mat-button color="primary" (click)="submitMat();" [disabled]="!matCompleted" matStepperNext>Continue</button>
       </div>
     </mat-step>
     <mat-step>
@@ -341,6 +345,8 @@
                   Left |
                   <mat-slider [displayWith]="formatLabelComp" thumbLabel min="1" max="3" step="1" (input)='changeMatsliderLght(question.id,$event)' [value]="question.answer"></mat-slider>
                   | Right
+                  <br>
+                  <mat-hint>Please click on the slider to set your choice.</mat-hint>
                 </span>
                 <span class="spacer"></span>
                 <button (click)="saveAnswerLght(question.id);" [disabled]="question.answer==''" mat-button>Next</button>
@@ -353,7 +359,7 @@
         </div>    
         <div>
             <button mat-button color="warn" matStepperPrevious>Back</button>
-            <button mat-button color="primary" (click)="submitLght();" [disabled]="!lghtVarCompleted" matStepperNext>Submit Light Level Investigation</button>
+            <button mat-button color="primary" (click)="submitLght();" [disabled]="!lghtVarCompleted" matStepperNext>Finish</button>
         </div>
       </mat-step>
       <mat-step>
@@ -361,18 +367,12 @@
           Thank you for doing this! You've undoubtedly helped advance the cause of science by hundreds, or even thousands, of <strong>minutes!</strong>
           <br>
           <br>
-          If you're satisfied with your answers, then go ahead and press submit.
-          <br>
-          <br>
-          In the case that you're not satisfied with your answers, then feel free to also press submit.
-          <br>
-          <br>
           If you feel that your answers won't progress the cause of science by enough minutes, you're always free to go back and edit them.
           <br>
           <br>
           <div>
             <button mat-button color="warn" matStepperPrevious>Back</button>
-            <button mat-raised-button color="accent" (click)="stepper.reset()">Submit</button>
+            <button mat-raised-button color="accent">All Done!</button>
           </div>
         </mat-step>
   </mat-horizontal-stepper>

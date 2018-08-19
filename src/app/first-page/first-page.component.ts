@@ -48,6 +48,13 @@ export class FirstPageComponent implements OnInit {
     this.idService.updateState(this.newId);    
   }
 
+  onPhoneChange(){
+    console.log("Test");
+    this.newId = this.phones.value + '-' + this.fixedId;
+    this.newId = this.newId.replace(/\s/g, '');
+    this.idService.updateState(this.newId); 
+  }
+
   onTextChange(arExpValue : string){
     this.arExpText = arExpValue;
   }

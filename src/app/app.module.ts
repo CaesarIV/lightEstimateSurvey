@@ -43,7 +43,7 @@ import {VgControlsModule} from 'videogular2/controls';
 import {VgOverlayPlayModule} from 'videogular2/overlay-play';
 import {VgBufferingModule} from 'videogular2/buffering';
 import 'hammerjs';
-import { AngularFireModule,FirebaseOptionsToken,FirebaseAppNameToken,FirebaseAppConfigToken } from 'angularfire2';
+import { AngularFireModule,FirebaseOptionsToken,FirebaseNameOrConfigToken } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from './../environments/environment';
@@ -120,8 +120,7 @@ const appRoutes: Routes = [
   providers: [
     AngularFirestore, IdService,
     { provide: FirebaseOptionsToken, useValue: environment.firebase },
-    { provide: FirebaseAppNameToken, useValue: 'stalldata' },
-    { provide: FirebaseAppConfigToken, useValue: undefined }
+    { provide: FirebaseNameOrConfigToken, useValue: 'stalldata' }
   ],
   bootstrap: [AppComponent]
 })
