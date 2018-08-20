@@ -29,7 +29,9 @@
               "node_modules/videogular2/fonts/videogular.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/chart.js/src/chart.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -82,7 +84,9 @@
               "/node_modules/videogular2/fonts/videogular.css",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/chart.js/src/chart.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

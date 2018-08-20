@@ -294,6 +294,9 @@ export class ThirdPageComponent implements OnInit {
     this.idServce.globalIdObs$.subscribe( data => this.idFromService = data);
     this.user = this.idFromService;
     this.location.replaceState(this.user+"/lightEst-survey");
+    this.afs.collection('participants').doc(this.user).set({
+      id: this.user
+    });
   }
 
 }
