@@ -52,6 +52,7 @@
                     (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
           </div>
+          <br>
           <mat-hint>50 is the best score. 0 is too Dark, 100 is too Bright.</mat-hint>
         </mat-card-content>
       </mat-card>
@@ -143,68 +144,10 @@
     </mat-grid-tile>
 
     <mat-grid-tile colspan="2" rowspan="2">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Chart 2
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div style="display: block">
-            <canvas baseChart
-                    [data]="polarAreaChartData"
-                    [labels]="polarAreaChartLabels"
-                    [legend]="polarAreaLegend"
-                    [chartType]="polarAreaChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></canvas>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan="2" rowspan="2">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Chart 2
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>
- 
-            <canvas baseChart
-                        [data]="lineChartData"
-                        [labels]="lineChartLabels"
-                        [options]="lineChartOptions"
-                        [chartType]="lineChartType"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)"></canvas>
-          </div>
-          
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan="4" rowspan="4">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
-              Age Groups
+              Material Investigation
               <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
@@ -215,13 +158,13 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-              <div style="display: block">
+              <div *ngIf="showMatChart" style="display: block">
                   <canvas baseChart
-                          [datasets]="barChartData"
-                          [labels]="barChartLabels"
-                          [options]="barChartOptions"
-                          [legend]="barChartLegend"
-                          [chartType]="barChartType"
+                          [datasets]="matChartData"
+                          [labels]="matChartLabels"
+                          [options]="matChartOptions"
+                          [legend]="matChartLegend"
+                          [chartType]="matChartType"
                           (chartHover)="chartHovered($event)"
                           (chartClick)="chartClicked($event)"></canvas>
                 </div>
@@ -229,6 +172,240 @@
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
+
+      <mat-grid-tile colspan="2" rowspan="2">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Comparative Scores (General)
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div *ngIf="showCompChart" style="display: block">
+              <canvas baseChart
+                      [data]="compAreaChartData"
+                      [labels]="compAreaChartLabels"
+                      [legend]="compAreaLegend"
+                      [chartType]="compAreaChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Comparative Scores (Light Level 0)
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div *ngIf="showCompChart" style="display: block">
+              <canvas baseChart
+                      [data]="comp0AreaChartData"
+                      [labels]="compAreaChartLabels"
+                      [legend]="compAreaLegend"
+                      [chartType]="compAreaChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+            <br>
+            <br>
+            <mat-hint><strong>Elaboration about points system</strong>
+              <br>
+              A point was granted if one image was selected over another, if both were deemed equal then they were both granted half a point. The number of points was then divided by the number of possible points to get a percentage of user acceptance.
+            <br>
+            <br>
+            In short, this is a measure of how much each farmework was picked, when offered. Or how much the users favored the framework.</mat-hint>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Comparative Scores (Light Level 1)
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div *ngIf="showCompChart" style="display: block">
+              <canvas baseChart
+                      [data]="comp1AreaChartData"
+                      [labels]="compAreaChartLabels"
+                      [legend]="compAreaLegend"
+                      [chartType]="compAreaChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Comparative Scores (Light Level 2)
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div *ngIf="showCompChart" style="display: block">
+              <canvas baseChart
+                      [data]="comp2AreaChartData"
+                      [labels]="compAreaChartLabels"
+                      [legend]="compAreaLegend"
+                      [chartType]="compAreaChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Comparative Scores (Light Level 3)
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div *ngIf="showCompChart" style="display: block">
+              <canvas baseChart
+                      [data]="comp3AreaChartData"
+                      [labels]="compAreaChartLabels"
+                      [legend]="compAreaLegend"
+                      [chartType]="compAreaChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Comparative Scores (Varying Level 1)
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div *ngIf="showCompChart" style="display: block">
+              <canvas baseChart
+                      [data]="compv1AreaChartData"
+                      [labels]="compAreaChartLabels"
+                      [legend]="compAreaLegend"
+                      [chartType]="compAreaChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Comparative Scores (Varying Level 2)
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div *ngIf="showCompChart" style="display: block">
+              <canvas baseChart
+                      [data]="compv2AreaChartData"
+                      [labels]="compAreaChartLabels"
+                      [legend]="compAreaLegend"
+                      [chartType]="compAreaChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+          <mat-card class="dashboard-card">
+            <mat-card-header>
+              <mat-card-title>
+                Comparative Scores (Varying Level 3)
+                <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" xPosition="before">
+                  <button mat-menu-item>Expand</button>
+                  <button mat-menu-item>Remove</button>
+                </mat-menu>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+              <div *ngIf="showCompChart" style="display: block">
+                <canvas baseChart
+                        [data]="compv3AreaChartData"
+                        [labels]="compAreaChartLabels"
+                        [legend]="compAreaLegend"
+                        [chartType]="compAreaChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+
+
 
       <mat-grid-tile colspan="2" rowspan="2">
           <mat-card class="dashboard-card">

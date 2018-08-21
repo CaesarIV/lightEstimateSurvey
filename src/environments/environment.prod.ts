@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyDt2cH9kWwbAPuXJffkjvaWnDcsUD1OJtk",
+    apiKey: "AIzaSyDt2cH9kWwbAPuXJffkjvaWnDcsUD1OJtkMB",
     authDomain: "lightestimationsurvey.firebaseapp.com",
     databaseURL: "https://lightestimationsurvey.firebaseio.com",
     projectId: "lightestimationsurvey",

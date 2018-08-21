@@ -27,6 +27,9 @@ export class AnalyticsComponent implements OnInit {
   showARhwChart = false;
   showARexpChart = false;
   showAveragesChart = false;
+  showCompChart = false;
+  showMatChart = false;
+
   level0 = false;
   level1 = false;
   level2 = false;
@@ -100,6 +103,74 @@ export class AnalyticsComponent implements OnInit {
 
   arkV3avg = 0;
   arkV3num = [];
+
+  //Comparative Score Arrays
+  arkCOMP = 0;
+  vufCOMP = 0;
+  arcCOMP = 0;
+
+  arkCOMP0 = 0;
+  vufCOMP0 = 0;
+  arcCOMP0 = 0;
+
+  arkCOMP1 = 0;
+  vufCOMP1 = 0;
+  arcCOMP1 = 0;
+
+  arkCOMP2 = 0;
+  vufCOMP2 = 0;
+  arcCOMP2 = 0;
+
+  arkCOMP3 = 0;
+  vufCOMP3 = 0;
+  arcCOMP3 = 0;
+
+  arkCOMPv1 = 0;
+  vufCOMPv1 = 0;
+  arcCOMPv1 = 0;
+
+  arkCOMPv2 = 0;
+  vufCOMPv2 = 0;
+  arcCOMPv2 = 0;
+
+  arkCOMPv3 = 0;
+  vufCOMPv3 = 0;
+  arcCOMPv3 = 0;
+
+
+  possibleScore = 0;
+
+  possibleScoreARK = 0;
+  possibleScoreVUF = 0;
+  possibleScoreARC = 0;
+
+  possibleScore0ARK = 0;
+  possibleScore0VUF = 0;
+  possibleScore0ARC = 0;
+
+  possibleScore1ARK = 0;
+  possibleScore1VUF = 0;
+  possibleScore1ARC = 0;
+
+  possibleScore2ARK = 0;
+  possibleScore2VUF = 0;
+  possibleScore2ARC = 0;
+
+  possibleScore3ARK = 0;
+  possibleScore3VUF = 0;
+  possibleScore3ARC = 0;
+
+  possibleScorev1ARK = 0;
+  possibleScorev1VUF = 0;
+  possibleScorev1ARC = 0;
+
+  possibleScorev2ARK = 0;
+  possibleScorev2VUF = 0;
+  possibleScorev2ARC = 0;
+  
+  possibleScorev3ARK = 0;
+  possibleScorev3VUF = 0;
+  possibleScorev3ARC = 0;
   
 
   constructor(
@@ -159,12 +230,14 @@ export class AnalyticsComponent implements OnInit {
             });
             //this.sortData();
         }
-        console.log("Analyzing in 2s...")
+
+        //ENTA FALA7
+        console.log("Analyzing in 3s...");
         setTimeout(() => 
         {
             this.sortData();
         },
-        2000);
+        3000);
         //this.sortData();
         // console.log(this.data);
         // console.log(this.data[1][0]);
@@ -193,7 +266,7 @@ export class AnalyticsComponent implements OnInit {
     for (let index = 0; index < this.data.length; index++) {
 
       //COUNT PHONES
-      console.log(this.data[index]);
+      //console.log(this.data[index]);
       if(this.data[index][1] && this.data[index][1][0]){
         if(this.data[index][1][0][0].phone){
           if(this.data[index][1][0][0].phone.indexOf("Android Operated") >= 0){
@@ -333,11 +406,1050 @@ export class AnalyticsComponent implements OnInit {
         }
       }
 
+      //console.log(this.data[index][3]);
+      //COMPARATIVE SCORES
+      //{answer: 3, id: 0, type: "Image", url1: "../../assets/Images/rc1s.png", url2: "../../assets/Images/vf1s.png"}
+      for (let i = 0; i < this.data[index][3].length; i++) {
+        if(this.data[index][3][i]){
+
+          //Calculating max possible score for each
+          this.possibleScore++;
+          if(this.data[index][3][i].url2.indexOf("vf") >= 0){
+            this.possibleScoreVUF++;
+            if(this.data[index][3][i].url2.indexOf("0s") >= 0){
+              this.possibleScore0VUF++;
+            }
+            if(this.data[index][3][i].url2.indexOf("1s") >= 0){
+              this.possibleScore1VUF++;
+            }
+            if(this.data[index][3][i].url2.indexOf("2s") >= 0){
+              this.possibleScore2VUF++;
+            }
+            if(this.data[index][3][i].url2.indexOf("3s") >= 0){
+              this.possibleScore3VUF++;
+            }
+            if(this.data[index][3][i].url2.indexOf("1V") >= 0){
+              this.possibleScorev1VUF++;
+            }
+            if(this.data[index][3][i].url2.indexOf("2V") >= 0){
+              this.possibleScorev2VUF++;
+            }
+            if(this.data[index][3][i].url2.indexOf("3V") >= 0){
+              this.possibleScorev3VUF++;
+            }
+          }
+          if(this.data[index][3][i].url2.indexOf("rc") >= 0){
+            this.possibleScoreARC++;
+            if(this.data[index][3][i].url2.indexOf("0s") >= 0){
+              this.possibleScore0ARC++;
+            }
+            if(this.data[index][3][i].url2.indexOf("1s") >= 0){
+              this.possibleScore1ARC++;
+            }
+            if(this.data[index][3][i].url2.indexOf("2s") >= 0){
+              this.possibleScore2ARC++;
+            }
+            if(this.data[index][3][i].url2.indexOf("3s") >= 0){
+              this.possibleScore3ARC++;
+            }
+            if(this.data[index][3][i].url2.indexOf("1V") >= 0){
+              this.possibleScorev1ARC++;
+            }
+            if(this.data[index][3][i].url2.indexOf("2V") >= 0){
+              this.possibleScorev2ARC++;
+            }
+            if(this.data[index][3][i].url2.indexOf("3V") >= 0){
+              this.possibleScorev3ARC++;
+            }
+          }
+          if(this.data[index][3][i].url2.indexOf("rk") >= 0){
+            this.possibleScoreARK++;
+            if(this.data[index][3][i].url2.indexOf("0s") >= 0){
+              this.possibleScore0ARK++;
+            }
+            if(this.data[index][3][i].url2.indexOf("1s") >= 0){
+              this.possibleScore1ARK++;
+            }
+            if(this.data[index][3][i].url2.indexOf("2s") >= 0){
+              this.possibleScore2ARK++;
+            }
+            if(this.data[index][3][i].url2.indexOf("3s") >= 0){
+              this.possibleScore3ARK++;
+            }
+            if(this.data[index][3][i].url2.indexOf("1V") >= 0){
+              this.possibleScorev1ARK++;
+            }
+            if(this.data[index][3][i].url2.indexOf("2V") >= 0){
+              this.possibleScorev2ARK++;
+            }
+            if(this.data[index][3][i].url2.indexOf("3V") >= 0){
+              this.possibleScorev3ARK++;
+            }
+          }
+          if(this.data[index][3][i].url1.indexOf("vf") >= 0){
+            this.possibleScoreVUF++;
+            if(this.data[index][3][i].url1.indexOf("0s") >= 0){
+              this.possibleScore0VUF++;
+            }
+            if(this.data[index][3][i].url1.indexOf("1s") >= 0){
+              this.possibleScore1VUF++;
+            }
+            if(this.data[index][3][i].url1.indexOf("2s") >= 0){
+              this.possibleScore2VUF++;
+            }
+            if(this.data[index][3][i].url1.indexOf("3s") >= 0){
+              this.possibleScore3VUF++;
+            }
+            if(this.data[index][3][i].url1.indexOf("1V") >= 0){
+              this.possibleScorev1VUF++;
+            }
+            if(this.data[index][3][i].url1.indexOf("2V") >= 0){
+              this.possibleScorev2VUF++;
+            }
+            if(this.data[index][3][i].url1.indexOf("3V") >= 0){
+              this.possibleScorev3VUF++;
+            }
+          }
+          if(this.data[index][3][i].url1.indexOf("rc") >= 0){
+            this.possibleScoreARC++;
+            if(this.data[index][3][i].url1.indexOf("0s") >= 0){
+              this.possibleScore0ARC++;
+            }
+            if(this.data[index][3][i].url1.indexOf("1s") >= 0){
+              this.possibleScore1ARC++;
+            }
+            if(this.data[index][3][i].url1.indexOf("2s") >= 0){
+              this.possibleScore2ARC++;
+            }
+            if(this.data[index][3][i].url1.indexOf("3s") >= 0){
+              this.possibleScore3ARC++;
+            }
+            if(this.data[index][3][i].url1.indexOf("1V") >= 0){
+              this.possibleScorev1ARC++;
+            }
+            if(this.data[index][3][i].url1.indexOf("2V") >= 0){
+              this.possibleScorev2ARC++;
+            }
+            if(this.data[index][3][i].url1.indexOf("3V") >= 0){
+              this.possibleScorev3ARC++;
+            }
+          }
+          if(this.data[index][3][i].url1.indexOf("rk") >= 0){
+            this.possibleScoreARK++;
+            if(this.data[index][3][i].url1.indexOf("0s") >= 0){
+              this.possibleScore0ARK++;
+            }
+            if(this.data[index][3][i].url1.indexOf("1s") >= 0){
+              this.possibleScore1ARK++;
+            }
+            if(this.data[index][3][i].url1.indexOf("2s") >= 0){
+              this.possibleScore2ARK++;
+            }
+            if(this.data[index][3][i].url1.indexOf("3s") >= 0){
+              this.possibleScore3ARK++;
+            }
+            if(this.data[index][3][i].url1.indexOf("1V") >= 0){
+              this.possibleScorev1ARK++;
+            }
+            if(this.data[index][3][i].url1.indexOf("2V") >= 0){
+              this.possibleScorev2ARK++;
+            }
+            if(this.data[index][3][i].url1.indexOf("3V") >= 0){
+              this.possibleScorev3ARK++;
+            }
+          }
+
+
+          //Calculating Points System
+          if(this.data[index][3][i].answer == 3){
+            if(this.data[index][3][i].url2.indexOf("vf") >= 0){
+
+              this.vufCOMP++;
+
+              if(this.data[index][3][i].url2.indexOf("0s") >= 0){
+                this.vufCOMP0++;
+              }
+              if(this.data[index][3][i].url2.indexOf("1s") >= 0){
+                this.vufCOMP1++;
+              }
+              if(this.data[index][3][i].url2.indexOf("2s") >= 0){
+                this.vufCOMP2++;
+              }
+              if(this.data[index][3][i].url2.indexOf("3s") >= 0){
+                this.vufCOMP3++;
+              }
+              if(this.data[index][3][i].url2.indexOf("1V") >= 0){
+                this.vufCOMPv1++;
+              }
+              if(this.data[index][3][i].url2.indexOf("2V") >= 0){
+                this.vufCOMPv2++;
+              }
+              if(this.data[index][3][i].url2.indexOf("3V") >= 0){
+                this.vufCOMPv3++;
+              }
+
+            }
+            if(this.data[index][3][i].url2.indexOf("rc") >= 0){
+
+              this.arcCOMP++;
+
+              if(this.data[index][3][i].url2.indexOf("0s") >= 0){
+                this.arcCOMP0++;
+              }
+              if(this.data[index][3][i].url2.indexOf("1s") >= 0){
+                this.arcCOMP1++;
+              }
+              if(this.data[index][3][i].url2.indexOf("2s") >= 0){
+                this.arcCOMP2++;
+              }
+              if(this.data[index][3][i].url2.indexOf("3s") >= 0){
+                this.arcCOMP3++;
+              }
+              if(this.data[index][3][i].url2.indexOf("1V") >= 0){
+                this.arcCOMPv1++;
+              }
+              if(this.data[index][3][i].url2.indexOf("2V") >= 0){
+                this.arcCOMPv2++;
+              }
+              if(this.data[index][3][i].url2.indexOf("3V") >= 0){
+                this.arcCOMPv3++;
+              }
+
+            }
+            if(this.data[index][3][i].url2.indexOf("rk") >= 0){
+              this.arkCOMP++;
+
+              if(this.data[index][3][i].url2.indexOf("0s") >= 0){
+                this.arkCOMP0++;
+              }
+              if(this.data[index][3][i].url2.indexOf("1s") >= 0){
+                this.arkCOMP1++;
+              }
+              if(this.data[index][3][i].url2.indexOf("2s") >= 0){
+                this.arkCOMP2++;
+              }
+              if(this.data[index][3][i].url2.indexOf("3s") >= 0){
+                this.arkCOMP3++;
+              }
+              if(this.data[index][3][i].url2.indexOf("1V") >= 0){
+                this.arkCOMPv1++;
+              }
+              if(this.data[index][3][i].url2.indexOf("2V") >= 0){
+                this.arkCOMPv2++;
+              }
+              if(this.data[index][3][i].url2.indexOf("3V") >= 0){
+                this.arkCOMPv3++;
+              }
+            }
+          }    
+          if(this.data[index][3][i].answer == 1){
+            if(this.data[index][3][i].url1.indexOf("vf") >= 0){
+              
+              this.vufCOMP++;
+
+              if(this.data[index][3][i].url1.indexOf("0s") >= 0){
+                this.vufCOMP0++;
+              }
+              if(this.data[index][3][i].url1.indexOf("1s") >= 0){
+                this.vufCOMP1++;
+              }
+              if(this.data[index][3][i].url1.indexOf("2s") >= 0){
+                this.vufCOMP2++;
+              }
+              if(this.data[index][3][i].url1.indexOf("3s") >= 0){
+                this.vufCOMP3++;
+              }
+              if(this.data[index][3][i].url1.indexOf("1V") >= 0){
+                this.vufCOMPv1++;
+              }
+              if(this.data[index][3][i].url1.indexOf("2V") >= 0){
+                this.vufCOMPv2++;
+              }
+              if(this.data[index][3][i].url1.indexOf("3V") >= 0){
+                this.vufCOMPv3++;
+              }
+
+
+            }
+            if(this.data[index][3][i].url1.indexOf("rc") >= 0){
+              this.arcCOMP++;
+
+              if(this.data[index][3][i].url1.indexOf("0s") >= 0){
+                this.arcCOMP0++;
+              }
+              if(this.data[index][3][i].url1.indexOf("1s") >= 0){
+                this.arcCOMP1++;
+              }
+              if(this.data[index][3][i].url1.indexOf("2s") >= 0){
+                this.arcCOMP2++;
+              }
+              if(this.data[index][3][i].url1.indexOf("3s") >= 0){
+                this.arcCOMP3++;
+              }
+              if(this.data[index][3][i].url1.indexOf("1V") >= 0){
+                this.arcCOMPv1++;
+              }
+              if(this.data[index][3][i].url1.indexOf("2V") >= 0){
+                this.arcCOMPv2++;
+              }
+              if(this.data[index][3][i].url1.indexOf("3V") >= 0){
+                this.arcCOMPv3++;
+              }
+            }
+            if(this.data[index][3][i].url1.indexOf("rk") >= 0){
+              this.arkCOMP++;
+
+              if(this.data[index][3][i].url1.indexOf("0s") >= 0){
+                this.arkCOMP0++;
+              }
+              if(this.data[index][3][i].url1.indexOf("1s") >= 0){
+                this.arkCOMP1++;
+              }
+              if(this.data[index][3][i].url1.indexOf("2s") >= 0){
+                this.arkCOMP2++;
+              }
+              if(this.data[index][3][i].url1.indexOf("3s") >= 0){
+                this.arkCOMP3++;
+              }
+              if(this.data[index][3][i].url1.indexOf("1V") >= 0){
+                this.arkCOMPv1++;
+              }
+              if(this.data[index][3][i].url1.indexOf("2V") >= 0){
+                this.arkCOMPv2++;
+              }
+              if(this.data[index][3][i].url1.indexOf("3V") >= 0){
+                this.arkCOMPv3++;
+              }
+            }
+          }    
+          if(this.data[index][3][i].answer == 2){
+            if(this.data[index][3][i].url2.indexOf("vf") >= 0){
+              this.vufCOMP+=0.5;
+              if(this.data[index][3][i].url2.indexOf("0s") >= 0){
+                this.vufCOMP0+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("1s") >= 0){
+                this.vufCOMP1+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("2s") >= 0){
+                this.vufCOMP2+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("3s") >= 0){
+                this.vufCOMP3+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("1V") >= 0){
+                this.vufCOMPv1+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("2V") >= 0){
+                this.vufCOMPv2+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("3V") >= 0){
+                this.vufCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][3][i].url2.indexOf("rc") >= 0){
+              this.arcCOMP+=0.5;
+              if(this.data[index][3][i].url2.indexOf("0s") >= 0){
+                this.arcCOMP0+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("1s") >= 0){
+                this.arcCOMP1+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("2s") >= 0){
+                this.arcCOMP2+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("3s") >= 0){
+                this.arcCOMP3+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("1V") >= 0){
+                this.arcCOMPv1+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("2V") >= 0){
+                this.arcCOMPv2+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("3V") >= 0){
+                this.arcCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][3][i].url2.indexOf("rk") >= 0){
+              this.arkCOMP+=0.5;
+              if(this.data[index][3][i].url2.indexOf("0s") >= 0){
+                this.arkCOMP0+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("1s") >= 0){
+                this.arkCOMP1+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("2s") >= 0){
+                this.arkCOMP2+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("3s") >= 0){
+                this.arkCOMP3+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("1V") >= 0){
+                this.arkCOMPv1+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("2V") >= 0){
+                this.arkCOMPv2+=0.5;
+              }
+              if(this.data[index][3][i].url2.indexOf("3V") >= 0){
+                this.arkCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][3][i].url1.indexOf("vf") >= 0){
+              this.vufCOMP+=0.5;
+              if(this.data[index][3][i].url1.indexOf("0s") >= 0){
+                this.vufCOMP0+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("1s") >= 0){
+                this.vufCOMP1+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("2s") >= 0){
+                this.vufCOMP2+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("3s") >= 0){
+                this.vufCOMP3+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("1V") >= 0){
+                this.vufCOMPv1+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("2V") >= 0){
+                this.vufCOMPv2+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("3V") >= 0){
+                this.vufCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][3][i].url1.indexOf("rc") >= 0){
+              this.arcCOMP+=0.5;
+              if(this.data[index][3][i].url1.indexOf("0s") >= 0){
+                this.arcCOMP0+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("1s") >= 0){
+                this.arcCOMP1+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("2s") >= 0){
+                this.arcCOMP2+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("3s") >= 0){
+                this.arcCOMP3+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("1V") >= 0){
+                this.arcCOMPv1+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("2V") >= 0){
+                this.arcCOMPv2+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("3V") >= 0){
+                this.arcCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][3][i].url1.indexOf("rk") >= 0){
+              this.arkCOMP+=0.5;
+              if(this.data[index][3][i].url1.indexOf("0s") >= 0){
+                this.arkCOMP0+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("1s") >= 0){
+                this.arkCOMP1+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("2s") >= 0){
+                this.arkCOMP2+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("3s") >= 0){
+                this.arkCOMP3+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("1V") >= 0){
+                this.arkCOMPv1+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("2V") >= 0){
+                this.arkCOMPv2+=0.5;
+              }
+              if(this.data[index][3][i].url1.indexOf("3V") >= 0){
+                this.arkCOMPv3+=0.5;
+              }
+            }
+          }   
+        }           
+      }
+
+      //console.log(this.data[index][4]);
+      for (let i = 0; i < this.data[index][4].length; i++) {
+        
+        if(this.data[index][4][i].url.indexOf("vf") >= 0){
+          if(this.data[index][4][i].answer == 'stainless_steel'){
+            this.matChartData[0].data[0]++;
+          }
+          if(this.data[index][4][i].answer == 'wood'){
+            this.matChartData[0].data[1]++;
+          }
+          if(this.data[index][4][i].answer == 'dirt'){
+            this.matChartData[0].data[2]++;
+          }
+          if(this.data[index][4][i].answer == 'rock'){
+            this.matChartData[0].data[3]++;
+          }
+          if(this.data[index][4][i].answer == 'plastic'){
+            this.matChartData[0].data[4]++;
+          }
+          if(this.data[index][4][i].answer == 'cloth'){
+            this.matChartData[0].data[5]++;
+          }
+          if(this.data[index][4][i].answer == 'same'){
+            this.matChartData[0].data[6]++;
+          }
+        }
+        if(this.data[index][4][i].url.indexOf("rc") >= 0){
+          if(this.data[index][4][i].answer == 'stainless_steel'){
+            this.matChartData[1].data[0]++;
+          }
+          if(this.data[index][4][i].answer == 'wood'){
+            this.matChartData[1].data[1]++;
+          }
+          if(this.data[index][4][i].answer == 'dirt'){
+            this.matChartData[1].data[2]++;
+          }
+          if(this.data[index][4][i].answer == 'rock'){
+            this.matChartData[1].data[3]++;
+          }
+          if(this.data[index][4][i].answer == 'plastic'){
+            this.matChartData[1].data[4]++;
+          }
+          if(this.data[index][4][i].answer == 'cloth'){
+            this.matChartData[1].data[5]++;
+          }
+          if(this.data[index][4][i].answer == 'same'){
+            this.matChartData[1].data[6]++;
+          }
+        }
+        if(this.data[index][4][i].url.indexOf("rk") >= 0){
+          if(this.data[index][4][i].answer == 'stainless_steel'){
+            this.matChartData[2].data[0]++;
+          }
+          if(this.data[index][4][i].answer == 'wood'){
+            this.matChartData[2].data[1]++;
+          }
+          if(this.data[index][4][i].answer == 'dirt'){
+            this.matChartData[2].data[2]++;
+          }
+          if(this.data[index][4][i].answer == 'rock'){
+            this.matChartData[2].data[3]++;
+          }
+          if(this.data[index][4][i].answer == 'plastic'){
+            this.matChartData[2].data[4]++;
+          }
+          if(this.data[index][4][i].answer == 'cloth'){
+            this.matChartData[2].data[5]++;
+          }
+          if(this.data[index][4][i].answer == 'same'){
+            this.matChartData[2].data[6]++;
+          }
+        }
+
+
+        
+      }
+
+      for (let i = 0; i < this.data[index][5].length; i++) {
+        if(this.data[index][5][i]){
+
+          //Calculating max possible score for each
+          this.possibleScore++;
+          if(this.data[index][5][i].url2.indexOf("vf") >= 0){
+            this.possibleScoreVUF++;
+            if(this.data[index][5][i].url2.indexOf("0s") >= 0){
+              this.possibleScore0VUF++;
+            }
+            if(this.data[index][5][i].url2.indexOf("1s") >= 0){
+              this.possibleScore1VUF++;
+            }
+            if(this.data[index][5][i].url2.indexOf("2s") >= 0){
+              this.possibleScore2VUF++;
+            }
+            if(this.data[index][5][i].url2.indexOf("3s") >= 0){
+              this.possibleScore3VUF++;
+            }
+            if(this.data[index][5][i].url2.indexOf("1V") >= 0){
+              this.possibleScorev1VUF++;
+            }
+            if(this.data[index][5][i].url2.indexOf("2V") >= 0){
+              this.possibleScorev2VUF++;
+            }
+            if(this.data[index][5][i].url2.indexOf("3V") >= 0){
+              this.possibleScorev3VUF++;
+            }
+          }
+          if(this.data[index][5][i].url2.indexOf("rc") >= 0){
+            this.possibleScoreARC++;
+            if(this.data[index][5][i].url2.indexOf("0s") >= 0){
+              this.possibleScore0ARC++;
+            }
+            if(this.data[index][5][i].url2.indexOf("1s") >= 0){
+              this.possibleScore1ARC++;
+            }
+            if(this.data[index][5][i].url2.indexOf("2s") >= 0){
+              this.possibleScore2ARC++;
+            }
+            if(this.data[index][5][i].url2.indexOf("3s") >= 0){
+              this.possibleScore3ARC++;
+            }
+            if(this.data[index][5][i].url2.indexOf("1V") >= 0){
+              this.possibleScorev1ARC++;
+            }
+            if(this.data[index][5][i].url2.indexOf("2V") >= 0){
+              this.possibleScorev2ARC++;
+            }
+            if(this.data[index][5][i].url2.indexOf("3V") >= 0){
+              this.possibleScorev3ARC++;
+            }
+          }
+          if(this.data[index][5][i].url2.indexOf("rk") >= 0){
+            this.possibleScoreARK++;
+            if(this.data[index][5][i].url2.indexOf("0s") >= 0){
+              this.possibleScore0ARK++;
+            }
+            if(this.data[index][5][i].url2.indexOf("1s") >= 0){
+              this.possibleScore1ARK++;
+            }
+            if(this.data[index][5][i].url2.indexOf("2s") >= 0){
+              this.possibleScore2ARK++;
+            }
+            if(this.data[index][5][i].url2.indexOf("3s") >= 0){
+              this.possibleScore3ARK++;
+            }
+            if(this.data[index][5][i].url2.indexOf("1V") >= 0){
+              this.possibleScorev1ARK++;
+            }
+            if(this.data[index][5][i].url2.indexOf("2V") >= 0){
+              this.possibleScorev2ARK++;
+            }
+            if(this.data[index][5][i].url2.indexOf("3V") >= 0){
+              this.possibleScorev3ARK++;
+            }
+          }
+          if(this.data[index][5][i].url1.indexOf("vf") >= 0){
+            this.possibleScoreVUF++;
+            if(this.data[index][5][i].url1.indexOf("0s") >= 0){
+              this.possibleScore0VUF++;
+            }
+            if(this.data[index][5][i].url1.indexOf("1s") >= 0){
+              this.possibleScore1VUF++;
+            }
+            if(this.data[index][5][i].url1.indexOf("2s") >= 0){
+              this.possibleScore2VUF++;
+            }
+            if(this.data[index][5][i].url1.indexOf("3s") >= 0){
+              this.possibleScore3VUF++;
+            }
+            if(this.data[index][5][i].url1.indexOf("1V") >= 0){
+              this.possibleScorev1VUF++;
+            }
+            if(this.data[index][5][i].url1.indexOf("2V") >= 0){
+              this.possibleScorev2VUF++;
+            }
+            if(this.data[index][5][i].url1.indexOf("3V") >= 0){
+              this.possibleScorev3VUF++;
+            }
+          }
+          if(this.data[index][5][i].url1.indexOf("rc") >= 0){
+            this.possibleScoreARC++;
+            if(this.data[index][5][i].url1.indexOf("0s") >= 0){
+              this.possibleScore0ARC++;
+            }
+            if(this.data[index][5][i].url1.indexOf("1s") >= 0){
+              this.possibleScore1ARC++;
+            }
+            if(this.data[index][5][i].url1.indexOf("2s") >= 0){
+              this.possibleScore2ARC++;
+            }
+            if(this.data[index][5][i].url1.indexOf("3s") >= 0){
+              this.possibleScore3ARC++;
+            }
+            if(this.data[index][5][i].url1.indexOf("1V") >= 0){
+              this.possibleScorev1ARC++;
+            }
+            if(this.data[index][5][i].url1.indexOf("2V") >= 0){
+              this.possibleScorev2ARC++;
+            }
+            if(this.data[index][5][i].url1.indexOf("3V") >= 0){
+              this.possibleScorev3ARC++;
+            }
+          }
+          if(this.data[index][5][i].url1.indexOf("rk") >= 0){
+            this.possibleScoreARK++;
+            if(this.data[index][5][i].url1.indexOf("0s") >= 0){
+              this.possibleScore0ARK++;
+            }
+            if(this.data[index][5][i].url1.indexOf("1s") >= 0){
+              this.possibleScore1ARK++;
+            }
+            if(this.data[index][5][i].url1.indexOf("2s") >= 0){
+              this.possibleScore2ARK++;
+            }
+            if(this.data[index][5][i].url1.indexOf("3s") >= 0){
+              this.possibleScore3ARK++;
+            }
+            if(this.data[index][5][i].url1.indexOf("1V") >= 0){
+              this.possibleScorev1ARK++;
+            }
+            if(this.data[index][5][i].url1.indexOf("2V") >= 0){
+              this.possibleScorev2ARK++;
+            }
+            if(this.data[index][5][i].url1.indexOf("3V") >= 0){
+              this.possibleScorev3ARK++;
+            }
+          }
+
+
+          //Calculating Points System
+          if(this.data[index][5][i].answer == 3){
+            if(this.data[index][5][i].url2.indexOf("vf") >= 0){
+
+              this.vufCOMP++;
+
+              if(this.data[index][5][i].url2.indexOf("0s") >= 0){
+                this.vufCOMP0++;
+              }
+              if(this.data[index][5][i].url2.indexOf("1s") >= 0){
+                this.vufCOMP1++;
+              }
+              if(this.data[index][5][i].url2.indexOf("2s") >= 0){
+                this.vufCOMP2++;
+              }
+              if(this.data[index][5][i].url2.indexOf("3s") >= 0){
+                this.vufCOMP3++;
+              }
+              if(this.data[index][5][i].url2.indexOf("1V") >= 0){
+                this.vufCOMPv1++;
+              }
+              if(this.data[index][5][i].url2.indexOf("2V") >= 0){
+                this.vufCOMPv2++;
+              }
+              if(this.data[index][5][i].url2.indexOf("3V") >= 0){
+                this.vufCOMPv3++;
+              }
+
+            }
+            if(this.data[index][5][i].url2.indexOf("rc") >= 0){
+
+              this.arcCOMP++;
+
+              if(this.data[index][5][i].url2.indexOf("0s") >= 0){
+                this.arcCOMP0++;
+              }
+              if(this.data[index][5][i].url2.indexOf("1s") >= 0){
+                this.arcCOMP1++;
+              }
+              if(this.data[index][5][i].url2.indexOf("2s") >= 0){
+                this.arcCOMP2++;
+              }
+              if(this.data[index][5][i].url2.indexOf("3s") >= 0){
+                this.arcCOMP3++;
+              }
+              if(this.data[index][5][i].url2.indexOf("1V") >= 0){
+                this.arcCOMPv1++;
+              }
+              if(this.data[index][5][i].url2.indexOf("2V") >= 0){
+                this.arcCOMPv2++;
+              }
+              if(this.data[index][5][i].url2.indexOf("3V") >= 0){
+                this.arcCOMPv3++;
+              }
+
+            }
+            if(this.data[index][5][i].url2.indexOf("rk") >= 0){
+              this.arkCOMP++;
+
+              if(this.data[index][5][i].url2.indexOf("0s") >= 0){
+                this.arkCOMP0++;
+              }
+              if(this.data[index][5][i].url2.indexOf("1s") >= 0){
+                this.arkCOMP1++;
+              }
+              if(this.data[index][5][i].url2.indexOf("2s") >= 0){
+                this.arkCOMP2++;
+              }
+              if(this.data[index][5][i].url2.indexOf("3s") >= 0){
+                this.arkCOMP3++;
+              }
+              if(this.data[index][5][i].url2.indexOf("1V") >= 0){
+                this.arkCOMPv1++;
+              }
+              if(this.data[index][5][i].url2.indexOf("2V") >= 0){
+                this.arkCOMPv2++;
+              }
+              if(this.data[index][5][i].url2.indexOf("3V") >= 0){
+                this.arkCOMPv3++;
+              }
+            }
+          }    
+          if(this.data[index][5][i].answer == 1){
+            if(this.data[index][5][i].url1.indexOf("vf") >= 0){
+              
+              this.vufCOMP++;
+
+              if(this.data[index][5][i].url1.indexOf("0s") >= 0){
+                this.vufCOMP0++;
+              }
+              if(this.data[index][5][i].url1.indexOf("1s") >= 0){
+                this.vufCOMP1++;
+              }
+              if(this.data[index][5][i].url1.indexOf("2s") >= 0){
+                this.vufCOMP2++;
+              }
+              if(this.data[index][5][i].url1.indexOf("3s") >= 0){
+                this.vufCOMP3++;
+              }
+              if(this.data[index][5][i].url1.indexOf("1V") >= 0){
+                this.vufCOMPv1++;
+              }
+              if(this.data[index][5][i].url1.indexOf("2V") >= 0){
+                this.vufCOMPv2++;
+              }
+              if(this.data[index][5][i].url1.indexOf("3V") >= 0){
+                this.vufCOMPv3++;
+              }
+
+
+            }
+            if(this.data[index][5][i].url1.indexOf("rc") >= 0){
+              this.arcCOMP++;
+
+              if(this.data[index][5][i].url1.indexOf("0s") >= 0){
+                this.arcCOMP0++;
+              }
+              if(this.data[index][5][i].url1.indexOf("1s") >= 0){
+                this.arcCOMP1++;
+              }
+              if(this.data[index][5][i].url1.indexOf("2s") >= 0){
+                this.arcCOMP2++;
+              }
+              if(this.data[index][5][i].url1.indexOf("3s") >= 0){
+                this.arcCOMP3++;
+              }
+              if(this.data[index][5][i].url1.indexOf("1V") >= 0){
+                this.arcCOMPv1++;
+              }
+              if(this.data[index][5][i].url1.indexOf("2V") >= 0){
+                this.arcCOMPv2++;
+              }
+              if(this.data[index][5][i].url1.indexOf("3V") >= 0){
+                this.arcCOMPv3++;
+              }
+            }
+            if(this.data[index][5][i].url1.indexOf("rk") >= 0){
+              this.arkCOMP++;
+
+              if(this.data[index][5][i].url1.indexOf("0s") >= 0){
+                this.arkCOMP0++;
+              }
+              if(this.data[index][5][i].url1.indexOf("1s") >= 0){
+                this.arkCOMP1++;
+              }
+              if(this.data[index][5][i].url1.indexOf("2s") >= 0){
+                this.arkCOMP2++;
+              }
+              if(this.data[index][5][i].url1.indexOf("3s") >= 0){
+                this.arkCOMP3++;
+              }
+              if(this.data[index][5][i].url1.indexOf("1V") >= 0){
+                this.arkCOMPv1++;
+              }
+              if(this.data[index][5][i].url1.indexOf("2V") >= 0){
+                this.arkCOMPv2++;
+              }
+              if(this.data[index][5][i].url1.indexOf("3V") >= 0){
+                this.arkCOMPv3++;
+              }
+            }
+          }    
+          if(this.data[index][5][i].answer == 2){
+            if(this.data[index][5][i].url2.indexOf("vf") >= 0){
+              this.vufCOMP+=0.5;
+              if(this.data[index][5][i].url2.indexOf("0s") >= 0){
+                this.vufCOMP0+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("1s") >= 0){
+                this.vufCOMP1+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("2s") >= 0){
+                this.vufCOMP2+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("3s") >= 0){
+                this.vufCOMP3+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("1V") >= 0){
+                this.vufCOMPv1+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("2V") >= 0){
+                this.vufCOMPv2+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("3V") >= 0){
+                this.vufCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][5][i].url2.indexOf("rc") >= 0){
+              this.arcCOMP+=0.5;
+              if(this.data[index][5][i].url2.indexOf("0s") >= 0){
+                this.arcCOMP0+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("1s") >= 0){
+                this.arcCOMP1+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("2s") >= 0){
+                this.arcCOMP2+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("3s") >= 0){
+                this.arcCOMP3+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("1V") >= 0){
+                this.arcCOMPv1+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("2V") >= 0){
+                this.arcCOMPv2+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("3V") >= 0){
+                this.arcCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][5][i].url2.indexOf("rk") >= 0){
+              this.arkCOMP+=0.5;
+              if(this.data[index][5][i].url2.indexOf("0s") >= 0){
+                this.arkCOMP0+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("1s") >= 0){
+                this.arkCOMP1+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("2s") >= 0){
+                this.arkCOMP2+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("3s") >= 0){
+                this.arkCOMP3+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("1V") >= 0){
+                this.arkCOMPv1+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("2V") >= 0){
+                this.arkCOMPv2+=0.5;
+              }
+              if(this.data[index][5][i].url2.indexOf("3V") >= 0){
+                this.arkCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][5][i].url1.indexOf("vf") >= 0){
+              this.vufCOMP+=0.5;
+              if(this.data[index][5][i].url1.indexOf("0s") >= 0){
+                this.vufCOMP0+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("1s") >= 0){
+                this.vufCOMP1+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("2s") >= 0){
+                this.vufCOMP2+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("3s") >= 0){
+                this.vufCOMP3+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("1V") >= 0){
+                this.vufCOMPv1+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("2V") >= 0){
+                this.vufCOMPv2+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("3V") >= 0){
+                this.vufCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][5][i].url1.indexOf("rc") >= 0){
+              this.arcCOMP+=0.5;
+              if(this.data[index][5][i].url1.indexOf("0s") >= 0){
+                this.arcCOMP0+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("1s") >= 0){
+                this.arcCOMP1+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("2s") >= 0){
+                this.arcCOMP2+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("3s") >= 0){
+                this.arcCOMP3+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("1V") >= 0){
+                this.arcCOMPv1+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("2V") >= 0){
+                this.arcCOMPv2+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("3V") >= 0){
+                this.arcCOMPv3+=0.5;
+              }
+            }
+            if(this.data[index][5][i].url1.indexOf("rk") >= 0){
+              this.arkCOMP+=0.5;
+              if(this.data[index][5][i].url1.indexOf("0s") >= 0){
+                this.arkCOMP0+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("1s") >= 0){
+                this.arkCOMP1+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("2s") >= 0){
+                this.arkCOMP2+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("3s") >= 0){
+                this.arkCOMP3+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("1V") >= 0){
+                this.arkCOMPv1+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("2V") >= 0){
+                this.arkCOMPv2+=0.5;
+              }
+              if(this.data[index][5][i].url1.indexOf("3V") >= 0){
+                this.arkCOMPv3+=0.5;
+              }
+            }
+          }   
+        }           
+      }
+
     }
+
+    this.compAreaChartData[0] = this.vufCOMP*100/this.possibleScoreVUF;
+    this.compAreaChartData[1] = this.arcCOMP*100/this.possibleScoreARC;
+    this.compAreaChartData[2] = this.arkCOMP*100/this.possibleScoreARK;
+
+    this.comp0AreaChartData[0] = this.vufCOMP0*100/this.possibleScore0VUF;
+    this.comp0AreaChartData[1] = this.arcCOMP0*100/this.possibleScore0ARC;
+    this.comp0AreaChartData[2] = this.arkCOMP0*100/this.possibleScore0ARK;
+
+    this.comp1AreaChartData[0] = this.vufCOMP1*100/this.possibleScore1VUF;
+    this.comp1AreaChartData[1] = this.arcCOMP1*100/this.possibleScore1ARC;
+    this.comp1AreaChartData[2] = this.arkCOMP1*100/this.possibleScore1ARK;
+
+    this.comp2AreaChartData[0] = this.vufCOMP2*100/this.possibleScore2VUF;
+    this.comp2AreaChartData[1] = this.arcCOMP2*100/this.possibleScore2ARC;
+    this.comp2AreaChartData[2] = this.arkCOMP2*100/this.possibleScore2ARK;
+
+    this.comp3AreaChartData[0] = this.vufCOMP3*100/this.possibleScore3VUF;
+    this.comp3AreaChartData[1] = this.arcCOMP3*100/this.possibleScore3ARC;
+    this.comp3AreaChartData[2] = this.arkCOMP3*100/this.possibleScore3ARK;
+
+    this.compv1AreaChartData[0] = this.vufCOMPv1*100/this.possibleScorev1VUF;
+    this.compv1AreaChartData[1] = this.arcCOMPv1*100/this.possibleScorev1ARC;
+    this.compv1AreaChartData[2] = this.arkCOMPv1*100/this.possibleScorev1ARK;
+
+    this.compv2AreaChartData[0] = this.vufCOMPv2*100/this.possibleScorev2VUF;
+    this.compv2AreaChartData[1] = this.arcCOMPv2*100/this.possibleScorev2ARC;
+    this.compv2AreaChartData[2] = this.arkCOMPv2*100/this.possibleScorev2ARK;
+
+    this.compv3AreaChartData[0] = this.vufCOMPv3*100/this.possibleScorev3VUF;
+    this.compv3AreaChartData[1] = this.arcCOMPv3*100/this.possibleScorev3ARC;
+    this.compv3AreaChartData[2] = this.arkCOMPv3*100/this.possibleScorev3ARK;
+
+    this.showCompChart = true;
     this.showPhoneChart = true;
     this.showARexpChart = true;
     this.showARhwChart = true;
     this.showAgeChart = true;
+    this.showMatChart = true;
 
     //Calculating Averages
     //Ar Core
@@ -483,68 +1595,74 @@ export class AnalyticsComponent implements OnInit {
     
     this.level0 = true;
 
-    this.level1ChartData[0].data = this.histogram(this.vufL1num,this.vufL1num.length);
-    this.level1ChartData[1].data = this.histogram(this.arcL1num,this.arcL1num.length);
-    this.level1ChartData[2].data = this.histogram(this.arkL1num,this.arkL1num.length);
+    // this.level1ChartData[0].data = this.histogram(this.vufL1num,this.vufL1num.length);
+    // this.level1ChartData[1].data = this.histogram(this.arcL1num,this.arcL1num.length);
+    // this.level1ChartData[2].data = this.histogram(this.arkL1num,this.arkL1num.length);
+    // for (let index = 0; index < this.histogram(this.vufL1num,this.vufL1num.length).length; index++) {
+    //   this.level1ChartLabels.push('');
+    // }
+    this.level1ChartData[0].data = this.vufL1num;
+    this.level1ChartData[1].data = this.arcL1num;
+    this.level1ChartData[2].data = this.arkL1num;
 
-    for (let index = 0; index < this.histogram(this.vufL1num,this.vufL1num.length).length; index++) {
+    for (let index = 0; index < Math.max(this.vufL1num.length,this.arcL1num.length,this.arkL1num.length); index++) {
       this.level1ChartLabels.push('');
     }
     
     this.level1 = true;
 
-    this.level2ChartData[0].data = this.histogram(this.vufL2num,this.vufL2num.length);
-    this.level2ChartData[1].data = this.histogram(this.arcL2num,this.arcL2num.length);
-    this.level2ChartData[2].data = this.histogram(this.arkL2num,this.arkL2num.length);
+    this.level2ChartData[0].data = this.vufL2num;
+    this.level2ChartData[1].data = this.arcL2num;
+    this.level2ChartData[2].data = this.arkL2num;
 
-    for (let index = 0; index < this.histogram(this.vufL2num,this.vufL2num.length).length; index++) {
+    for (let index = 0; index < Math.max(this.vufL2num.length,this.arcL2num.length,this.arkL2num.length); index++) {
       this.level2ChartLabels.push('');
     }
     
     this.level2 = true;
 
-    this.level3ChartData[0].data = this.histogram(this.vufL3num,this.vufL3num.length);
-    this.level3ChartData[1].data = this.histogram(this.arcL3num,this.arcL3num.length);
-    this.level3ChartData[2].data = this.histogram(this.arkL3num,this.arkL3num.length);
+    this.level3ChartData[0].data = this.vufL3num;
+    this.level3ChartData[1].data = this.arcL3num;
+    this.level3ChartData[2].data = this.arkL3num;
 
-    for (let index = 0; index < this.histogram(this.vufL3num,this.vufL3num.length).length; index++) {
+    for (let index = 0; index < Math.max(this.vufL3num.length,this.arcL3num.length,this.arkL3num.length); index++) {
       this.level3ChartLabels.push('');
     }
     
     this.level3 = true;
 
-    this.vary1ChartData[0].data = this.histogram(this.vufV1num,this.vufV1num.length);
-    this.vary1ChartData[1].data = this.histogram(this.arcV1num,this.arcV1num.length);
-    this.vary1ChartData[2].data = this.histogram(this.arkV1num,this.arkV1num.length);
+    this.vary1ChartData[0].data = this.vufV1num;
+    this.vary1ChartData[1].data = this.arcV1num;
+    this.vary1ChartData[2].data = this.arkV1num;
 
-    for (let index = 0; index < this.histogram(this.vufV1num,this.vufV1num.length).length; index++) {
+    for (let index = 0; index < Math.max(this.vufV1num.length,this.arcV1num.length,this.arkV1num.length); index++) {
       this.vary1ChartLabels.push('');
     }
     
     this.vary1 = true;
 
-    this.vary2ChartData[0].data = this.histogram(this.vufV2num,this.vufV2num.length);
-    this.vary2ChartData[1].data = this.histogram(this.arcV2num,this.arcV2num.length);
-    this.vary2ChartData[2].data = this.histogram(this.arkV2num,this.arkV2num.length);
+    this.vary2ChartData[0].data = this.vufV2num;
+    this.vary2ChartData[1].data = this.arcV2num;
+    this.vary2ChartData[2].data = this.arkV2num;
 
-    for (let index = 0; index < this.histogram(this.vufV2num,this.vufV2num.length).length; index++) {
+    for (let index = 0; index < Math.max(this.vufV2num.length,this.arcV2num.length,this.arkV2num.length); index++) {
       this.vary2ChartLabels.push('');
     }
     
     this.vary2 = true;
 
-    this.vary3ChartData[0].data = this.histogram(this.vufV3num,this.vufV3num.length);
-    this.vary3ChartData[1].data = this.histogram(this.arcV3num,this.arcV3num.length);
-    this.vary3ChartData[2].data = this.histogram(this.arkV3num,this.arkV3num.length);
+    this.vary3ChartData[0].data = this.vufV3num;
+    this.vary3ChartData[1].data = this.arcV3num;
+    this.vary3ChartData[2].data = this.arkV3num;
 
-    for (let index = 0; index < this.histogram(this.vufV3num,this.vufV3num.length).length; index++) {
+    for (let index = 0; index < Math.max(this.vufV3num.length,this.arcV3num.length,this.arkV3num.length); index++) {
       this.vary3ChartLabels.push('');
     }
     
     this.vary3 = true;
 
     this.showAveragesChart = true;
-    console.log(this.averagesChartData[0].data[0]);
+    //console.log(this.averagesChartData[0].data[0]);
     //console.log( this.phoneChartData)
   }
 
@@ -658,6 +1776,32 @@ export class AnalyticsComponent implements OnInit {
   public vary3ChartLabels:Array<any> = [];
   public vary3ChartType:string = 'line';
   public vary3ChartLegend:boolean = true;
+
+  public compAreaChartLabels:string[] = ['Vufora', 'AR Core', 'AR Kit'];
+  public compAreaChartData:number[] = [0, 0, 0];
+  public comp0AreaChartData:number[] = [0, 0, 0];
+  public comp1AreaChartData:number[] = [0, 0, 0];
+  public comp2AreaChartData:number[] = [0, 0, 0];
+  public comp3AreaChartData:number[] = [0, 0, 0];
+  public compv1AreaChartData:number[] = [0, 0, 0];
+  public compv2AreaChartData:number[] = [0, 0, 0];
+  public compv3AreaChartData:number[] = [0, 0, 0];
+  public compAreaLegend:boolean = true;
+ 
+  public compAreaChartType:string = 'polarArea';
+
+  public matChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public matChartLabels:string[] = ['Stainless Steel', 'Wood', 'Dirt', 'Rock', 'Plastic', 'Cloth', 'Same'];
+  public matChartType:string = 'bar';
+  public matChartLegend:boolean = true;
+  public matChartData:any[] = [
+    {data: [0, 0, 0, 0, 0, 0, 0], label: 'Vuforia'},
+    {data: [0, 0, 0, 0, 0, 0, 0], label: 'AR Core'},
+    {data: [0, 0, 0, 0, 0, 0, 0], label: 'AR Kit'}
+  ];
 
     // lineChart
     public lineChartData:Array<any> = [
