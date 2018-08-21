@@ -31,7 +31,7 @@ export class FirstPageComponent implements OnInit {
   expWithAr = '';
 
   arWare = new FormControl();  
-  arWareList: string[] = ['Smarphone / Tablet', 'AR-Headset', 'AR-Kiosk', 'Other'];
+  arWareList: string[] = ['Smartphone / Tablet', 'AR-Headset', 'AR-Kiosk', 'Other'];
 
   constructor(private afs: AngularFirestore, private idService:IdService, private location: Location) { }
 

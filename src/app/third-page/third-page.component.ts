@@ -29,6 +29,15 @@ export class ThirdPageComponent implements OnInit {
     {id: 9, type:'Image', url:'../../assets/Images/vf3s.png', answer:''},
     {id: 10, type:'Image', url:'../../assets/Images/rk0s.png', answer:''},
     {id: 11, type:'Image', url:'../../assets/Images/vf2s.png', answer:''},
+    {id: 12, type:'Image', url:'../../assets/Images/rc1s.png', answer:''},
+    {id: 13, type:'Image', url:'../../assets/Images/vf1V.png', answer:''},
+    {id: 14, type:'Image', url:'../../assets/Images/rc2V.png', answer:''},
+    {id: 15, type:'Image', url:'../../assets/Images/rk3V.png', answer:''},
+    {id: 16, type:'Image', url:'../../assets/Images/vf2V.png', answer:''},
+    {id: 17, type:'Image', url:'../../assets/Images/rc3V.png', answer:''},
+    {id: 18, type:'Image', url:'../../assets/Images/rk1V.png', answer:''},
+    {id: 19, type:'Image', url:'../../assets/Images/vf3V.png', answer:''},
+    {id: 20, type:'Image', url:'../../assets/Images/rk2V.png', answer:''},
   ];
 
   compQuestions = [
@@ -177,7 +186,8 @@ export class ThirdPageComponent implements OnInit {
     this.compCompleted = true;
   }
 
-  saveAnswerMat(question:number){            
+  saveAnswerMat(question:number){   
+    this.matGroup="";         
     this.nextStepMat();
 
     for (let index = 0; index < this.matQuestions.length; index++) {      

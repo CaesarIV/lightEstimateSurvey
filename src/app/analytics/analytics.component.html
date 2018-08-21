@@ -6,7 +6,7 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Chart 1
+            Phone Types
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -17,11 +17,11 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>
+          <div *ngIf="showPhoneChart">
             <canvas baseChart
-                        [data]="doughnutChartData"
-                        [labels]="doughnutChartLabels"
-                        [chartType]="doughnutChartType"
+                        [data]="phoneChartData"
+                        [labels]="phoneChartLabels"
+                        [chartType]="phoneChartType"
                         (chartHover)="chartHovered($event)"
                         (chartClick)="chartClicked($event)"></canvas>
           </div>
@@ -33,7 +33,7 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Chart 2
+            Averages Solo Tests
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -44,14 +44,15 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div style="display: block">
+          <div *ngIf="showAveragesChart" style="display: block">
             <canvas baseChart
-                    [datasets]="radarChartData"
-                    [labels]="radarChartLabels"
-                    [chartType]="radarChartType"
+                    [datasets]="averagesChartData"
+                    [labels]="averagesChartLabels"
+                    [chartType]="averagesChartType"
                     (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
           </div>
+          <mat-hint>50 is the best score. 0 is too Dark, 100 is too Bright.</mat-hint>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -60,7 +61,7 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Chart 2
+            AR Experience
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -71,14 +72,16 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div style="display: block">
-            <canvas baseChart
-                    [data]="pieChartData"
-                    [labels]="pieChartLabels"
-                    [chartType]="pieChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></canvas>
-          </div>
+      
+                <div *ngIf="showARexpChart" style="display: block">
+                    <canvas baseChart
+                            [data]="ARexpChartData"
+                            [labels]="ARexpChartLabels"
+                            [chartType]="ARexpChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -87,7 +90,34 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Chart 2
+            Age Groups
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+            <div *ngIf="showAgeChart" style="display: block">
+                <canvas baseChart
+                        [data]="ageChartData"
+                        [labels]="ageChartLabels"
+                        [chartType]="ageChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+              </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            AR Hardware Used
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -99,47 +129,14 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <div>
-            <div style="display: block">
-              <canvas baseChart
-                      [datasets]="barChartData"
-                      [labels]="barChartLabels"
-                      [options]="barChartOptions"
-                      [legend]="barChartLegend"
-                      [chartType]="barChartType"
-                      (chartHover)="chartHovered($event)"
-                      (chartClick)="chartClicked($event)"></canvas>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan="1" rowspan="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Chart 2
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>
-            <div style="display: block">
-              <canvas baseChart
-                      [datasets]="barChartData"
-                      [labels]="barChartLabels"
-                      [options]="barChartOptions"
-                      [legend]="barChartLegend"
-                      [chartType]="barChartType"
-                      (chartHover)="chartHovered($event)"
-                      (chartClick)="chartClicked($event)"></canvas>
-            </div>
+              <div *ngIf="showARhwChart">
+                  <canvas baseChart
+                              [data]="ARhwChartData"
+                              [labels]="ARhwChartLabels"
+                              [chartType]="ARhwChartType"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                </div>
           </div>
         </mat-card-content>
       </mat-card>
@@ -202,6 +199,246 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
+
+    <mat-grid-tile colspan="4" rowspan="4">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Age Groups
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+              <div style="display: block">
+                  <canvas baseChart
+                          [datasets]="barChartData"
+                          [labels]="barChartLabels"
+                          [options]="barChartOptions"
+                          [legend]="barChartLegend"
+                          [chartType]="barChartType"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)"></canvas>
+                </div>
+  
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="2" rowspan="2">
+          <mat-card class="dashboard-card">
+            <mat-card-header>
+              <mat-card-title>
+                Light Level 0 Comparison
+                <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" xPosition="before">
+                  <button mat-menu-item>Expand</button>
+                  <button mat-menu-item>Remove</button>
+                </mat-menu>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+              <div *ngIf="level0">
+     
+                <canvas baseChart
+                            [datasets]="level0ChartData"
+                            [chartType]="level0ChartType"
+                            [labels]="level0ChartLabels"
+                            [legend]="level0ChartLegend"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+              </div>
+              
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2" rowspan="2">
+            <mat-card class="dashboard-card">
+              <mat-card-header>
+                <mat-card-title>
+                  Light Level 1 Comparison
+                  <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu" xPosition="before">
+                    <button mat-menu-item>Expand</button>
+                    <button mat-menu-item>Remove</button>
+                  </mat-menu>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="dashboard-card-content">
+              <div *ngIf="level1">
+  
+                  <canvas baseChart
+                              [datasets]="level1ChartData"
+                              [chartType]="level1ChartType"
+                              [labels]="level1ChartLabels"
+                              [legend]="level1ChartLegend"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                </div>
+                
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2">
+              <mat-card class="dashboard-card">
+                <mat-card-header>
+                  <mat-card-title>
+                      Light Level 2 Comparison
+                    <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                      <button mat-menu-item>Expand</button>
+                      <button mat-menu-item>Remove</button>
+                    </mat-menu>
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+                    <div *ngIf="level2">
+     
+                        <canvas baseChart
+                                    [datasets]="level2ChartData"
+                                    [chartType]="level2ChartType"
+                                    [labels]="level2ChartLabels"
+                                    [legend]="level2ChartLegend"
+                                    (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)"></canvas>
+                      </div>
+                  
+                </mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="2" rowspan="2">
+                <mat-card class="dashboard-card">
+                  <mat-card-header>
+                    <mat-card-title>
+                        Light Level 3 Comparison
+                      <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item>Expand</button>
+                        <button mat-menu-item>Remove</button>
+                      </mat-menu>
+                    </mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="dashboard-card-content">
+                      <div *ngIf="level3">
+     
+                          <canvas baseChart
+                                      [datasets]="level3ChartData"
+                                      [chartType]="level3ChartType"
+                                      [labels]="level3ChartLabels"
+                                      [legend]="level3ChartLegend"
+                                      (chartHover)="chartHovered($event)"
+                                      (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    
+                  </mat-card-content>
+                </mat-card>
+              </mat-grid-tile>
+
+              <mat-grid-tile colspan="1" rowspan="1">
+                  <mat-card class="dashboard-card">
+                    <mat-card-header>
+                      <mat-card-title>
+                        Varying 1 Comparison
+                        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                          <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                          <button mat-menu-item>Expand</button>
+                          <button mat-menu-item>Remove</button>
+                        </mat-menu>
+                      </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="dashboard-card-content">
+                        <div *ngIf="vary1">
+     
+                            <canvas baseChart
+                                        [datasets]="vary1ChartData"
+                                        [chartType]="vary1ChartType"
+                                        [labels]="vary1ChartLabels"
+                                        [legend]="vary1ChartLegend"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                          </div>
+                      
+                    </mat-card-content>
+                  </mat-card>
+                </mat-grid-tile>
+
+                <mat-grid-tile colspan="2" rowspan="2">
+                    <mat-card class="dashboard-card">
+                      <mat-card-header>
+                        <mat-card-title>
+                            Varying 2 Comparison
+                          <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item>Expand</button>
+                            <button mat-menu-item>Remove</button>
+                          </mat-menu>
+                        </mat-card-title>
+                      </mat-card-header>
+                      <mat-card-content class="dashboard-card-content">
+                          <div *ngIf="vary2">
+    
+                            <canvas baseChart
+                                        [datasets]="vary2ChartData"
+                                        [chartType]="vary2ChartType"
+                                        [labels]="vary2ChartLabels"
+                                        [legend]="vary2ChartLegend"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                          </div>
+                        
+                      </mat-card-content>
+                    </mat-card>
+                  </mat-grid-tile>
+
+                  <mat-grid-tile colspan="1" rowspan="1">
+                      <mat-card class="dashboard-card">
+                        <mat-card-header>
+                          <mat-card-title>
+                              Varying 3 Comparison
+                            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                              <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu" xPosition="before">
+                              <button mat-menu-item>Expand</button>
+                              <button mat-menu-item>Remove</button>
+                            </mat-menu>
+                          </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="dashboard-card-content">
+                            <div *ngIf="vary3">
+    
+                                <canvas baseChart
+                                            [datasets]="vary3ChartData"
+                                            [chartType]="vary3ChartType"
+                                            [labels]="vary3ChartLabels"
+                                            [legend]="vary3ChartLegend"
+                                            (chartHover)="chartHovered($event)"
+                                            (chartClick)="chartClicked($event)"></canvas>
+                              </div>
+                          
+                        </mat-card-content>
+                      </mat-card>
+                    </mat-grid-tile>
 
   </mat-grid-list>
 
